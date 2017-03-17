@@ -1,3 +1,76 @@
+#                   outcome_group                            income_group                                              #
+#        +------------------------------------------+        +--------------------------------+                                  #
+#        | group_id |      title      | colunm_name |        | group_id | title | colunm_name |                                  #
+#        |----------+-----------------+-------------|        |----------+-------+-------------|                                  #
+#        |          |                 |             |        |          |       |             |                                  #
+#        |          |                 |             |        |          |       |             |                                  #
+
+В графе income_group, если поле пустое - скрывать его
+
+#income_group.colunm_name
+lex_salary_avtor
+lex_salary_frog
+lex_salary_globallogic
+youleek_salary_mindshare
+parents
+sales
+presents
+others
+#income_group.title
+Global Logic (Лёша)
+Frog (Лёша)
+Avtor (Лёша)
+Mindshare (Юля)
+Родители
+Продажи
+Подарки
+Другое
+#outcome_group.colunm_name
+utilities_house_keeping
+utilities_garage
+utilities_internet
+utilities_elecricity
+utilities_gas
+utilities_water
+food
+domestic
+transportation
+car_maintain
+clothes
+health
+house_stuff
+kid_stuff
+entertainment
+presents
+study_development
+phone
+cigarette
+#outcome_group.title
+ОСББ
+Гараж
+Интернет
+Свет
+Газ 
+Вода
+Питание
+Хоз.товары и бытовые траты
+Бензин/дорога
+Расходы на машину
+Одежда
+Здоровье
+Вещи для дома/быта
+Игрушки, др. вещи для ребёнка
+Досуг
+Подарки
+Обучение, развитие
+Телефон
+Сигареты
+
+
+
+
+
+
 # в git хранится txt-файл с инициализацией таблиц
 если оно в git - нет смысла носить его на флешке
     create repo for nerve in Sushko

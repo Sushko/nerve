@@ -1,74 +1,41 @@
-#                   outcome_group                            income_group                                              #
-#        +------------------------------------------+        +--------------------------------+                                  #
-#        | group_id |      title      | colunm_name |        | group_id | title | colunm_name |                                  #
-#        |----------+-----------------+-------------|        |----------+-------+-------------|                                  #
-#        |          |                 |             |        |          |       |             |                                  #
-#        |          |                 |             |        |          |       |             |                                  #
-
-В графе income_group, если поле пустое - скрывать его
-
-#income_group.colunm_name
-lex_salary_avtor
-lex_salary_frog
-lex_salary_globallogic
-youleek_salary_mindshare
-parents
-sales
-presents
-others
-#income_group.title
-Global Logic (Лёша)
-Frog (Лёша)
-Avtor (Лёша)
-Mindshare (Юля)
-Родители
-Продажи
-Подарки
-Другое
-#outcome_group.colunm_name
-utilities_house_keeping
-utilities_garage
-utilities_internet
-utilities_elecricity
-utilities_gas
-utilities_water
-food
-domestic
-transportation
-car_maintain
-clothes
-health
-house_stuff
-kid_stuff
-entertainment
-presents
-study_development
-phone
-cigarette
-#outcome_group.title
-ОСББ
-Гараж
-Интернет
-Свет
-Газ 
-Вода
-Питание
-Хоз.товары и бытовые траты
-Бензин/дорога
-Расходы на машину
-Одежда
-Здоровье
-Вещи для дома/быта
-Игрушки, др. вещи для ребёнка
-Досуг
-Подарки
-Обучение, развитие
-Телефон
-Сигареты
-
-
-
-
+#                        income_group                                                                                  #
+#        +----------------------------------------------------------+                                                  #
+#        | group_id |       title        |       colunm_name        |                                                  #
+#        |----------+--------------------+--------------------------|                                                  #
+#        |          | Frog (Лёша)        | lex_salary_avtor         |                                                  #
+#        |          | Avtor (Лёша)       | lex_salary_frog          |                                                  #
+#        |          | GlobalLogic (Лёша) | lex_salary_globallogic   |                                                  #
+#        |          | Mindshare (Youleek)| youleek_salary_mindshare |                                                  #
+#        |          | Parents            | parents                  |                                                  #
+#        |          | Sales              | sales                    |                                                  #
+#        |          | Presents           | presented                |                                                  #
+#        |          | Other              | other                    |                                                  #
+#        |          |                    |                          |                                                  #
+#   В графе income_group, если поле пустое - скрывать его                                                              #
+#                         outcome_group                                                                                #
+#        +--------------------------------------------------------------------+                                        #
+#        | group_id |             title             |       colunm_name       |                                        #
+#        |----------+-------------------------------+-------------------------|                                        #
+#        |          | ОСББ                          | utilities_house_keeping |                                        #
+#        |          | Гараж                         | utilities_garage        |                                        #
+#        |          | Интернет                      | utilities_internet      |                                        #
+#        |          | Свет                          | utilities_electricity   |                                        #
+#        |          | Газ                           | utilities_gas           |                                        #
+#        |          | Вода                          | utilities_water         |                                        #
+#        |          | Питание                       | food                    |                                        #
+#        |          | Хоз.товары и бытовые траты    | domestic                |                                        #
+#        |          | Бензин/дорога                 | transportation          |                                        #
+#        |          | Расходы на машину             | car_maintain            |                                        #
+#        |          | Одежда                        | clothes                 |                                        #
+#        |          | Здоровье                      | health                  |                                        #
+#        |          | Вещи для дома/быта            | house_stuff             |                                        #
+#        |          | Игрушки, др. вещи для ребёнка | kid_stuff               |                                        #
+#        |          | Досуг                         | entertainment           |                                        #
+#        |          | Подарки                       | presents                |                                        #
+#        |          | Обучение, развитие            | study_development       |                                        #
+#        |          | Телефон                       | phone                   |                                        #
+#        |          | Сигареты                      | cigarette               |                                        #
+#        |          |                               |                         |                                        #
 
 
 # в git хранится txt-файл с инициализацией таблиц
@@ -178,6 +145,8 @@ cigarette
 #            |    |         |        |        |         |       |              |      |                                #
 #            |    |         |        |        |         |       |              |      |                                #
 #                                                                                                                      #
+#   set value "some month" in column "month" for goal with no specific month                                           #
+#                                                                                                                      #
 #----------------------------------------------------------------------------------------------------------------------#
 #                                                         -------                                                      #
 #                                                        |HISTORY|                                                     #
@@ -194,11 +163,11 @@ cigarette
 # columns "income", "outcome" with prefixes "in_", "out_"                                                              #
 #                                                                                                                      #
 #                                                     extra_expense                                                    #
-#                                +----------+-------+-------+---------------------+                                    #
-#                                | extra_id |  year | month | title | type | cost |                                    #
-#                                |----------+-------+-------+-------+------+------|                                    #
-#                                |          |       |       |       |      |      |                                    #
-#                                |          |       |       |       |      |      |                                    #
+#                                +----------+-------+-------+------------------------------+                           #
+#                                | extra_id |  year | month | title | type | cost | coment |                           #
+#                                |----------+-------+-------+-------+------+------+--------|                           #
+#                                |          |       |       |       |      |      |        |                           #
+#                                |          |       |       |       |      |      |        |                           #
 #     Column "type" - whether "big expense" or "extra loss"(usually out of budjet)                                     #
 #    По кнопке "Save month/New month" добавляется запись в обе таблици (в "extra_expense" по необходимости)            #
 #----------------------------------------------------------------------------------------------------------------------#
@@ -207,13 +176,13 @@ cigarette
 #                                                      -------------                                                   #
 #  income_and_status:    data common for month: income, balance, invest amount                                         #
 #  outcome:               expences for month per day and groupe                                                        #
-#                            income_and_status                             outcome                                     #
-#        +-----------------------------------------------+       +----------------------+                              #
-#        | date | income_group | invest_amount | balance |       | date | outcome_group |                              #
-#        |      |    <--5-->   |               |         |       |      |   <--20-->    |                              #
-#        |------+--------------+---------------+---------|       |------+---------------|                              #
-#        |      |  |  |  |  |  |               |         |       |      |  |  |   |  |  |                              #
-#        +-----------------------------------------------+       |      |  |  |   |  |  |                              #
+#                                      income_and_status                                    outcome                    #
+#        +--------------------------------------------------------------------+      +----------------------+          #
+#        | date | income_group | invest_amount | balance | usd_ratio | coment |      | date | outcome_group |          #
+#        |      |    <--5-->   |               |         |           |        |      |      |   <--20-->    |          #
+#        |------+--------------+---------------+---------+-----------+--------|      |------+---------------|          #
+#        |      |  |  |  |  |  |               |         |           |        |      |      |  |  |   |  |  |          #
+#        +-----------------------------------------------------------+--------+      |      |  |  |   |  |  |          #
 #                                                                                                                      #
 #    Field "balance" - current state of money (should be equal = prev.month balance-current month (outcome+inv.mount)) #
 #    negative balance = debt                                                                                           #

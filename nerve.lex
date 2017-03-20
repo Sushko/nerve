@@ -163,12 +163,12 @@
 # columns "income", "outcome" with prefixes "in_", "out_"                                                              #
 #                                                                                                                      #
 #                                                     extra_expense                                                    #
-#                                +----------+-------+-------+------------------------------+                           #
-#                                | extra_id |  year | month | title | type | cost | coment |                           #
-#                                |----------+-------+-------+-------+------+------+--------|                           #
-#                                |          |       |       |       |      |      |        |                           #
-#                                |          |       |       |       |      |      |        |                           #
-#     Column "type" - whether "big expense" or "extra loss"(usually out of budjet)                                     #
+#                                +----------+-------+-------+---------------------+                                    #
+#                                | extra_id |  year | month | title | type | cost |                                    #
+#                                |----------+-------+-------+-------+------+------|                                    #
+#                                |          |       |       |       |      |      |                                    #
+#                                |          |       |       |       |      |      |                                    #
+#    Column "type" - whether "big expense" or "extra loss"(usually out of budjet)                                      #
 #    По кнопке "Save month/New month" добавляется запись в обе таблици (в "extra_expense" по необходимости)            #
 #----------------------------------------------------------------------------------------------------------------------#
 #                                                      -------------                                                   #
@@ -178,7 +178,7 @@
 #  outcome:               expences for month per day and groupe                                                        #
 #                                      income_and_status                                    outcome                    #
 #        +--------------------------------------------------------------------+      +----------------------+          #
-#        | date | income_group | invest_amount | balance | usd_ratio | coment |      | date | outcome_group |          #
+#        | date | income_group | invest_amount | balance | usd_ratio | notes  |      | date | outcome_group |          #
 #        |      |    <--5-->   |               |         |           |        |      |      |   <--20-->    |          #
 #        |------+--------------+---------------+---------+-----------+--------|      |------+---------------|          #
 #        |      |  |  |  |  |  |               |         |           |        |      |      |  |  |   |  |  |          #

@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
+-- version 4.5.2
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Mar 19, 2017 at 08:50 PM
+-- Host: localhost
+-- Generation Time: Mar 20, 2017 at 08:43 
 -- Server version: 10.1.19-MariaDB
 -- PHP Version: 5.6.28
 
@@ -32,8 +32,34 @@ CREATE TABLE `extra_expense` (
   `month` enum('January','February','March','April','May','June','July','August','September','October','November','December','Some month') NOT NULL,
   `title` varchar(50) NOT NULL,
   `type` enum('Big expense','Extra loss') NOT NULL,
+  `cost` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `goals_in_time`
+--
+
+CREATE TABLE `goals_in_time` (
+  `year` year(4) NOT NULL,
+  `month` enum('January','February','March','April','May','June','July','August','September','October','November','December','Some month') NOT NULL,
+  `income` int(11) NOT NULL,
+  `outcome` int(11) NOT NULL,
+  `invest_amount` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `goals_name`
+--
+
+CREATE TABLE `goals_name` (
+  `id` int(11) NOT NULL,
+  `title` varchar(50) NOT NULL,
   `cost` int(11) NOT NULL,
-  `coment` varchar(50) NOT NULL
+  `year` year(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -104,6 +130,32 @@ CREATE TABLE `income_and_status` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `income_group`
+--
+
+CREATE TABLE `income_group` (
+  `group_id` int(11) NOT NULL,
+  `title` varchar(50) NOT NULL,
+  `colunm_name` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `income_group`
+--
+
+INSERT INTO `income_group` (`group_id`, `title`, `colunm_name`) VALUES
+(1, 'Avtor (Лёша)', 'lex_salary_avtor'),
+(2, 'Frog (Лёша)', 'lex_salary_frog'),
+(3, 'GlobalLogic (Лёша)', 'lex_salary_globallogic'),
+(4, 'Mindshare (Youleek)', 'youleek_salary_mindshare'),
+(5, 'Родители', 'parents'),
+(6, 'Продажи', 'sales'),
+(7, 'Подарки', 'presented'),
+(8, 'Другое', 'other');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `outcome`
 --
 
@@ -130,6 +182,68 @@ CREATE TABLE `outcome` (
   `cigarette` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `outcome_group`
+--
+
+CREATE TABLE `outcome_group` (
+  `group_id` int(11) NOT NULL,
+  `title` varchar(50) NOT NULL,
+  `colunm_name` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `outcome_group`
+--
+
+INSERT INTO `outcome_group` (`group_id`, `title`, `colunm_name`) VALUES
+(1, 'ОСББ', 'utilities_house_keeping'),
+(2, 'Гараж', 'utilities_garage'),
+(3, 'Интернет', 'utilities_internet'),
+(4, 'Свет', 'utilities_electricity'),
+(5, 'Газ', 'utilities_gas'),
+(6, 'Вода', 'utilities_water'),
+(7, 'Питание', 'food'),
+(8, 'Хоз.товары и бытовые траты', 'domestic'),
+(9, 'Бензин/дорога', 'transportation'),
+(10, 'Расходы на машину', 'car_maintain'),
+(11, 'Одежда', 'clothes'),
+(12, 'Здоровье', 'health'),
+(13, 'Вещи для дома/быта', 'house_stuff'),
+(14, 'Игрушки, др. вещи для ребёнка', 'kid_stuff'),
+(15, 'Досуг', 'entertainment'),
+(16, 'Подарки', 'presents'),
+(17, 'Обучение, развитие', 'study_development'),
+(18, 'Телефон', 'phone'),
+(19, 'Сигареты', 'cigarette');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `plans_in_time`
+--
+
+CREATE TABLE `plans_in_time` (
+  `id` int(11) NOT NULL,
+  `plan_id` int(11) NOT NULL,
+  `month` enum('January','February','March','April','May','June','July','August','September','October','November','December','Some month') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `plans_name`
+--
+
+CREATE TABLE `plans_name` (
+  `plan_id` int(11) NOT NULL,
+  `title` varchar(50) NOT NULL,
+  `out_group_id` int(11) NOT NULL,
+  `cost` int(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 --
 -- Indexes for dumped tables
 --
@@ -141,6 +255,36 @@ ALTER TABLE `extra_expense`
   ADD PRIMARY KEY (`extra_id`);
 
 --
+-- Indexes for table `goals_name`
+--
+ALTER TABLE `goals_name`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `income_group`
+--
+ALTER TABLE `income_group`
+  ADD PRIMARY KEY (`group_id`);
+
+--
+-- Indexes for table `outcome_group`
+--
+ALTER TABLE `outcome_group`
+  ADD PRIMARY KEY (`group_id`);
+
+--
+-- Indexes for table `plans_in_time`
+--
+ALTER TABLE `plans_in_time`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `plans_name`
+--
+ALTER TABLE `plans_name`
+  ADD PRIMARY KEY (`plan_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -149,6 +293,31 @@ ALTER TABLE `extra_expense`
 --
 ALTER TABLE `extra_expense`
   MODIFY `extra_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `goals_name`
+--
+ALTER TABLE `goals_name`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `income_group`
+--
+ALTER TABLE `income_group`
+  MODIFY `group_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT for table `outcome_group`
+--
+ALTER TABLE `outcome_group`
+  MODIFY `group_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+--
+-- AUTO_INCREMENT for table `plans_in_time`
+--
+ALTER TABLE `plans_in_time`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `plans_name`
+--
+ALTER TABLE `plans_name`
+  MODIFY `plan_id` int(11) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

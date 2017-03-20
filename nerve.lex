@@ -2,14 +2,14 @@
 #        +----------------------------------------------------------+                                                  #
 #        | group_id |       title        |       colunm_name        |                                                  #
 #        |----------+--------------------+--------------------------|                                                  #
-#        |          | Frog (Лёша)        | lex_salary_avtor         |                                                  #
-#        |          | Avtor (Лёша)       | lex_salary_frog          |                                                  #
+#        |          | Avtor (Лёша)       | lex_salary_avtor         |                                                  #
+#        |          | Frog (Лёша)        | lex_salary_frog          |                                                  #
 #        |          | GlobalLogic (Лёша) | lex_salary_globallogic   |                                                  #
 #        |          | Mindshare (Youleek)| youleek_salary_mindshare |                                                  #
-#        |          | Parents            | parents                  |                                                  #
-#        |          | Sales              | sales                    |                                                  #
-#        |          | Presents           | presented                |                                                  #
-#        |          | Other              | other                    |                                                  #
+#        |          | Родители           | parents                  |                                                  #
+#        |          | Продажи            | sales                    |                                                  #
+#        |          | Подарки            | presented                |                                                  #
+#        |          | Другое             | other                    |                                                  #
 #        |          |                    |                          |                                                  #
 #   В графе income_group, если поле пустое - скрывать его                                                              #
 #                         outcome_group                                                                                #

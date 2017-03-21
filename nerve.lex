@@ -12,15 +12,15 @@ HISTORY:
     extra_expense   - manually
 CURRENT MONTH:
     income_and_status   - manually
-    outcome         - script
+    outcome         - script from excel
 
 
 
 [TODO]
-    1. "income_and_status" should be filled before "history"
-    2. make script that fills "income_and_status" and "outcome" from excel
-    3. format excel table in appropriate form
-    4. make script that takes corresponding fields from "income_and_status" and "outcome" and fill field in "history" according to year/month
+    1. make script that fills "outcome" and most of "income_and_status" from excel
+    2. format excel table in appropriate form
+    3. all unfilled fields of "income_and_status" should be filled manually before "history" 
+    4. make script that takes corresponding fields from "income_and_status" and "outcome" and fill field in "history" according to year/month. and "dump" "outcome" table as archive.
 
 
 

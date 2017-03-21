@@ -1,49 +1,43 @@
-#                        income_group                                                                                  #
-#        +----------------------------------------------------------+                                                  #
-#        | group_id |       title        |       colunm_name        |                                                  #
-#        |----------+--------------------+--------------------------|                                                  #
-#        |          | Avtor (Лёша)       | lex_salary_avtor         |                                                  #
-#        |          | Frog (Лёша)        | lex_salary_frog          |                                                  #
-#        |          | GlobalLogic (Лёша) | lex_salary_globallogic   |                                                  #
-#        |          | Mindshare (Youleek)| youleek_salary_mindshare |                                                  #
-#        |          | Родители           | parents                  |                                                  #
-#        |          | Продажи            | sales                    |                                                  #
-#        |          | Подарки            | presented                |                                                  #
-#        |          | Другое             | other                    |                                                  #
-#        |          |                    |                          |                                                  #
-#   В графе income_group, если поле пустое - скрывать его                                                              #
-#                         outcome_group                                                                                #
-#        +--------------------------------------------------------------------+                                        #
-#        | group_id |             title             |       colunm_name       |                                        #
-#        |----------+-------------------------------+-------------------------|                                        #
-#        |          | ОСББ                          | utilities_house_keeping |                                        #
-#        |          | Гараж                         | utilities_garage        |                                        #
-#        |          | Интернет                      | utilities_internet      |                                        #
-#        |          | Свет                          | utilities_electricity   |                                        #
-#        |          | Газ                           | utilities_gas           |                                        #
-#        |          | Вода                          | utilities_water         |                                        #
-#        |          | Питание                       | food                    |                                        #
-#        |          | Хоз.товары и бытовые траты    | domestic                |                                        #
-#        |          | Бензин/дорога                 | transportation          |                                        #
-#        |          | Расходы на машину             | car_maintain            |                                        #
-#        |          | Одежда                        | clothes                 |                                        #
-#        |          | Здоровье                      | health                  |                                        #
-#        |          | Вещи для дома/быта            | house_stuff             |                                        #
-#        |          | Игрушки, др. вещи для ребёнка | kid_stuff               |                                        #
-#        |          | Досуг                         | entertainment           |                                        #
-#        |          | Подарки                       | presents                |                                        #
-#        |          | Обучение, развитие            | study_development       |                                        #
-#        |          | Телефон                       | phone                   |                                        #
-#        |          | Сигареты                      | cigarette               |                                        #
-#        |          |                               |                         |                                        #
+GENERAL:
+    outcome_group   - done
+    income_group    - done
+GOALS:
+    goals_in_time   - manually
+    goals_name      - manually
+PLANS:
+    plans_in_time   - manually
+    plans_name      - manually
+HISTORY:
+    history         - from "income_and_status" and "outcome" by script 
+    extra_expense   - manually
+CURRENT MONTH:
+    income_and_status   - manually
+    outcome         - script
 
 
-# в git хранится txt-файл с инициализацией таблиц
-если оно в git - нет смысла носить его на флешке
-    create repo for nerve in Sushko
-    создать папку отдельно для HW (bbb) - держать описание конфигурации, плано TODO, скрипты, может легкий код, build инструкции (ничего тяжелого?)
-    init git:
-    потренироваться с index.html
+
+[TODO]
+    1. "income_and_status" should be filled before "history"
+    2. make script that fills "income_and_status" and "outcome" from excel
+    3. format excel table in appropriate form
+    4. make script that takes corresponding fields from "income_and_status" and "outcome" and fill field in "history" according to year/month
+
+
+
+
+    - заполнять таблици данными из excel
+    - как конвертировать данные в БД из excel
+
+    - написать скрипт заполнения БД (месяца, переноса в историю)
+    - написать скрипт отображение БД
+    - написать draft скрипт для отображения месяца
+
+    - разобраться в MVC
+    - распланировать стадии разработки ПО
+    - построить модель ПО по MVC (модель ПО: что там должно быть, как работать, стадии выполнения, MVC, structure of files)
+
+
+    /*---*/
     git на сервере "/var/www/html/"
     git на работе в папке "/opt/lampp/htdocs/nerve"
     git дома на Windows в папке где-то "/xampp/htdocs/nerve"
@@ -51,26 +45,15 @@
     (git на флешке  "/projects/nerve/web/source/")
     основной репозиторий - git, дома, на работе, на сервере - можно скачать - удалить и т.п.
     делать дамп репозитория с какой-то регулярностью
+
     /*---*/
-    создать БД с 10 таблицами (пустыми)
-        (делать дамп, копировать, переносить домой/на работу, когда закончен - залить в git)
-    /*---*/
+    создать папку отдельно для HW (bbb) - держать описание конфигурации, плано TODO, скрипты, может легкий код, build инструкции (ничего тяжелого?)
     продумать как держать данные для таблиц в git в файле 
     сделать скрипк, который делает дамп текущей БД (на всякий случай), дропает ее, и установливает ДБ из нового файла
     возможно потом можно сделать скрипт который будет апдейтить только поля в БД
+
 # maybe in future set git repo on bbb
 
-[TODO]
-    - проинициировать все в git, repo
-    - проработать как заполнять и синхронизаировать из дома/работы
-    - создать таблици
-    - how to read from excel
-    - написать скрипт заполнения БД
-    - заполнять))
-    - structure of files, MVC
-    - модель ПО: что там должно быть, как работать, стадии выполнения, MVC
-    - Proecting DB
-    - How to keep DB in git (in files)
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #needed views in new budget
@@ -80,7 +63,7 @@
 #                                                        -----                                                         #
 #                                                       |GOALS|                                                        #
 #                                                        -----                                                         #
-#                                                           /\                                                         #
+#                                                          /\                                                          #
 #                                                         /  \                                                         #
 #                                         -------   /   -------------  \   -----                                       #
 # (+summary of previous months, years)   |HISTORY| <   |CURRENT MONTH|  > |PLANS| (expences plan for next month, year) #
@@ -109,6 +92,46 @@
 #        |          |       |             |        |          |       |             |                                  #
 #                                                                                                                      #
 #   colunm_name = поле с названием соответствующей колонки в History & Current month                                   #
+#                                                                                                                      #
+#                        income_group                                                                                  #
+#        +----------------------------------------------------------+                                                  #
+#        | group_id |       title        |       colunm_name        |                                                  #
+#        |----------+--------------------+--------------------------|                                                  #
+#        |          | Avtor (Лёша)       | lex_salary_avtor         |                                                  #
+#        |          | Frog (Лёша)        | lex_salary_frog          |                                                  #
+#        |          | GlobalLogic (Лёша) | lex_salary_globallogic   |                                                  #
+#        |          | Mindshare (Youleek)| youleek_salary_mindshare |                                                  #
+#        |          | Родители           | parents                  |                                                  #
+#        |          | Продажи            | sales                    |                                                  #
+#        |          | Подарки            | presented                |                                                  #
+#        |          | Социальные выплаты | government               |                                                  #
+#        |          | Другое             | other                    |                                                  #
+#        |          |                    |                          |                                                  #
+#   В графе income_group, если поле пустое - скрывать его                                                              #
+#                         outcome_group                                                                                #
+#        +--------------------------------------------------------------------+                                        #
+#        | group_id |             title             |       colunm_name       |                                        #
+#        |----------+-------------------------------+-------------------------|                                        #
+#        |          | ОСББ                          | utilities_house_keeping |                                        #
+#        |          | Гараж                         | utilities_garage        |                                        #
+#        |          | Интернет                      | utilities_internet      |                                        #
+#        |          | Свет                          | utilities_electricity   |                                        #
+#        |          | Газ                           | utilities_gas           |                                        #
+#        |          | Вода                          | utilities_water         |                                        #
+#        |          | Питание                       | food                    |                                        #
+#        |          | Хоз.товары и бытовые траты    | domestic                |                                        #
+#        |          | Бензин/дорога                 | transportation          |                                        #
+#        |          | Расходы на машину             | car_maintain            |                                        #
+#        |          | Одежда                        | clothes                 |                                        #
+#        |          | Здоровье                      | health                  |                                        #
+#        |          | Вещи для дома/быта            | house_stuff             |                                        #
+#        |          | Игрушки, др. вещи для ребёнка | kid_stuff               |                                        #
+#        |          | Досуг                         | entertainment           |                                        #
+#        |          | Подарки                       | presents                |                                        #
+#        |          | Обучение, развитие            | study_development       |                                        #
+#        |          | Телефон                       | phone                   |                                        #
+#        |          | Сигареты                      | cigarette               |                                        #
+#        |          |                               |                         |                                        #
 #----------------------------------------------------------------------------------------------------------------------#
 #                                                          -----                                                       #
 #                                                         |GOALS|                                                      #
@@ -156,7 +179,7 @@
 #                                                         history                                                      #
 #        +-----------------------------------------------------------------------------------------------------+       #
 #        | year | month | income_group | outcome_group | invest_amount | capital | balance | usd_ratio | notes |       #
-#        |      |       |    <--5-->   |   <--20-->    |               |         |         |           |       |       #
+#        |      |       |    <--9-->   |   <--19-->    |               |         |         |           |       |       #
 #        |------+-------+--------------+---------------+---------------+---------+---------+-----------+-------|       #
 #        |      |       |  |  |  |  |  |  |  |   |  |  |               |         |         |           |       |       #
 #        |      |       |  |  |  |  |  |  |  |   |  |  |               |         |         |           |       |       #
@@ -179,7 +202,7 @@
 #                                      income_and_status                                    outcome                    #
 #        +--------------------------------------------------------------------+      +----------------------+          #
 #        | date | income_group | invest_amount | balance | usd_ratio | notes  |      | date | outcome_group |          #
-#        |      |    <--5-->   |               |         |           |        |      |      |   <--20-->    |          #
+#        |      |    <--9-->   |               |         |           |        |      |      |   <--19-->    |          #
 #        |------+--------------+---------------+---------+-----------+--------|      |------+---------------|          #
 #        |      |  |  |  |  |  |               |         |           |        |      |      |  |  |   |  |  |          #
 #        +-----------------------------------------------------------+--------+      |      |  |  |   |  |  |          #

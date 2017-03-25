@@ -78,6 +78,7 @@ CREATE TABLE `history` (
   `parents` int(11) NOT NULL,
   `sales` int(11) NOT NULL,
   `presented` int(11) NOT NULL,
+  `government` int(11) NOT NULL,
   `other` int(11) NOT NULL,
   `utilities_house_keeping` int(11) NOT NULL,
   `utilities_garage` int(11) NOT NULL,
@@ -120,6 +121,7 @@ CREATE TABLE `income_and_status` (
   `parents` int(11) NOT NULL,
   `sales` int(11) NOT NULL,
   `presented` int(11) NOT NULL,
+  `government` int(11) NOT NULL,
   `other` int(11) NOT NULL,
   `balance` int(11) NOT NULL,
   `invest_amount` int(11) NOT NULL,
@@ -151,7 +153,8 @@ INSERT INTO `income_group` (`group_id`, `title`, `colunm_name`) VALUES
 (5, 'Родители', 'parents'),
 (6, 'Продажи', 'sales'),
 (7, 'Подарки', 'presented'),
-(8, 'Другое', 'other');
+(8, 'Социальные выплаты', 'government'),
+(9, 'Другое', 'other');
 
 -- --------------------------------------------------------
 

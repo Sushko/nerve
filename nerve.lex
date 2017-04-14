@@ -1,3 +1,62 @@
+[MVC]
+/lib
+--/controller
+---- FrendCnt.php
+--/model
+---- Frend.php
+---- FrendList.php
+--/view
+---- frendlist.php
+---- frendone.php
+/www
+-- index.php
+-- .htaccess
+Вынесение каталога lib (содержащего движок нашего сайта) из веб-каталога даёт нам бОльшую защищённость, делая нашу систему недоступной для посягательств шаловливых ручонок взломщиков.
+[code for dump DB]
+PHP: генерация резервной копии базы данных MySQL в одну строку кода
+
+Создание резервных копий баз данных очень важная задача, которую нужно время от времени выполнять. В данной заметке вы узнаете как с помощью PHP создать дамп базы данных в одну строчку.
+Для решения данной задачи можете воспользоваться командой exec().
+Заметка: выбирая между shell_exec() и exec(), советуем выбрать второе. В результате нам не будет выведен весь SQL код. Данные просто запишутся в файл.
+Данная команду будет:
+
+выполнять команду mysqldump с набором нужных параметров,
+записывать данные в файл.
+Пример:
+    mysqldump --user=... --password=... --host=... DB_NAME > /path/to/output/file.sql
+PHP код будет выглядеть так:
+    exec('mysqldump --user=... --password=... --host=... DB_NAME > /path/to/output/file.sql');
+Вместо знака ... необходимо подставить имя пользователя базы данных, пароль и хост.
+Помимо этого, выполнение данного файла можно подсадить на крон, поэтому имя файла можно генерировать автоматически, используя функцию даты и времени.
+    exec('mysqldump --user=... --password=... --host=... DB_NAME > /path/to/output/' . date('Y-m-d') . '.sql');
+
+If you want to create a backup to download it via the browser, you also can do this without using a file.
+
+The php function passthru() will directly redirect the output of mysqldump to the browser. In this example it also will be zipped.
+
+Pro: You don't have to deal with temp files.
+
+Con: Won't work on Windows. May have limits with huge datasets.
+
+<?php
+
+$DBUSER="user";
+$DBPASSWD="password";
+$DATABASE="user_db";
+
+$filename = "backup-" . date("d-m-Y") . ".sql.gz";
+$mime = "application/x-gzip";
+
+header( "Content-Type: " . $mime );
+header( 'Content-Disposition: attachment; filename="' . $filename . '"' );
+
+$cmd = "mysqldump -u $DBUSER --password=$DBPASSWD $DATABASE | gzip --best";   
+
+passthru( $cmd );
+
+exit(0);
+?>
+
 [save outcome to log]
 1. подготовить excel file
 2. mechanism of exporting data to cvs by month

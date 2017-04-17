@@ -1,3 +1,17 @@
+To backup:
+"mysqldump -u user -p database > backup.sql"
+
+To import:
+"mysql -u user -p database < backup.sql"
+
+[ideas / what next]
+- make dump DB, fill history fields (from income_and_status and outcome), make date.cvs file from outcome, clear from income_and_status and outcome tables
+- add in each class of mvc function/method info/set_data to model (for learning reasons)
+- warning about empty fields in income_and_status table
+- note for future development: planning script: task with deadline, default deadline - end of current year
+- idea list
+- phone voice notepad
+
 [MVC]
 /lib
 --/controller

@@ -17,4 +17,10 @@ class Model
 	{
 		// todo
 	}
+
+	// метод записи данных
+	public function set_data()
+	{
+		// todo
+	}
 }

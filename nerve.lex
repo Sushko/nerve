@@ -1,3 +1,19 @@
+1) add in each class of mvc function/method info/set_data to model (for learning reasons)
+2)  make dump DB, 
+    fill history fields (from income_and_status and outcome), 
+    make date.cvs file from outcome, 
+    clear from income_and_status and outcome tables
+3) warning about empty fields in income_and_status table
+
+API for work with DB (separate for now):
++ function for making DB dump
++ function for clearing "income_and_status" and "outcome"
+- function for creating cvs-file
+- function which picks out data from "income_and_status", "outcome" and fills "history"
+
+
+!!system diagnostic on start (check ability to read/write, connections to servises, mails and so on)
+
 To backup:
 "mysqldump -u user -p database > backup.sql"
 

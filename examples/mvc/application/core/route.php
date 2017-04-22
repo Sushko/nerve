@@ -16,7 +16,8 @@ class Route
 
 
 		$GLOBALS["home_path"] = 'nerve/examples/mvc/';		
-		$GLOBALS["store_path"] = '/nerve/db/';		
+		//$GLOBALS["store_path"] = '/nerve/db/';	
+		//$GLOBALS["store_path"] = $path = str_replace('\\', '/', realpath(dirname(__FILE__))).'/';//'c:/xampp/htdocs/nerve/db/';	
 		$routes = explode('/', substr($_SERVER['REQUEST_URI'],strlen($GLOBALS["home_path"])));
 
 		// получаем имя контроллера

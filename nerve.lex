@@ -1,3 +1,38 @@
+скрипт для отображения графика курса доллара на заглавной странице
+
+for each view (page) make netx methods:
+    get data (extract needed data from corresponding tables)
+    refresh/update/reload (reload data from tables after some changes) - maybe neede only "get data" or "get data" with parameters to reload exact data but not all tables
+    set data (set certain data tosertain table). Think about it (by field / whole tables / by group)
+1) Current month
+#read
+- income and status (on start)
+- outcome (on start)
+#write
+- income and status (on some action)
+- outcome (on some action)
+/*automatic write*/
+- history (at the and of the month)
+- extra_expense (at the and of the month)
+2) History
+#read
+- history (on start)
+- extra_expense (on start)
+3) Goals
+#read
+- goals_name (on start)
+- goals_in_time (on start)
+#write
+- make a record in each table or in both for one shot
+4) Plans
+#read
+- plals_name (on start)
+- plals_in_time (on start)
+#write
+- make a record in each table or in both for one shot. Depends on mechanism of plans creation
+
+
+
 1) add in each class of mvc function/method info/set_data to model (for learning reasons)
 2)  make dump DB, 
     fill history fields (from income_and_status and outcome), 
@@ -8,8 +43,8 @@
 API for work with DB (separate for now):
 + function for making DB dump
 + function for clearing "income_and_status" and "outcome"
-- function for creating cvs-file
-- function which picks out data from "income_and_status", "outcome" and fills "history"
++ function for creating cvs-file
++ function which picks out data from "income_and_status", "outcome" and fills "history"
 
 
 !!system diagnostic on start (check ability to read/write, connections to servises, mails and so on)

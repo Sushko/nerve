@@ -18,7 +18,8 @@ function DB_dump()
         2. add mysqldump path to $PATH variablein
         3. put mysqldump to folder with "visible" path  /usr/local/sbin,/usr/local/bin,/usr/sbin,/usr/bin,/sbin,/bin
     */
-    exec('/opt/lampp/bin/mysqldump -uroot --password= nerve >'.$GLOBALS["store_path"].date('Y-m-d') . '.sql', $output, $return_var);
+    exec('mysqldump -uroot --password= nerve >'.$GLOBALS["store_path"].date('Y-m-d') . '.sql', $output, $return_var);
+    //exec('/opt/lampp/bin/mysqldump -uroot --password= nerve >'.$GLOBALS["store_path"].date('Y-m-d') . '.sql', $output, $return_var);
 }
 
 /* empty tables ountome and income_and_status for new month */

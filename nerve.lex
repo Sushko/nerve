@@ -1,19 +1,47 @@
++) rename
+    ГЛАВНАЯ     -> Current month
+    УСЛУГИ      -> History
+    ПОРТФОЛИО   -> Plans
+    КОНТАКТЫ    -> Goals
++) make models for each view (update all files accordingly) - start from any method
+
++) add get/set methods in each model*
++) implement get/set models for each view/controller (just path data to/from view page)
+
++) move from example to main directory
+6) add login page
+7) fix all dependencies / files / includes / pathes / detect OS
+
+#  
+1) Current month
+2) History
+3) Plans
+4) Goals
+
 скрипт для отображения графика курса доллара на заглавной странице
 
-for each view (page) make netx methods:
+for each view (page) make next methods:
     get data (extract needed data from corresponding tables)
     refresh/update/reload (reload data from tables after some changes) - maybe neede only "get data" or "get data" with parameters to reload exact data but not all tables
     set data (set certain data tosertain table). Think about it (by field / whole tables / by group)
+
+#read on start (automatic)
+#read on demand (reload, specified by fields / groups)
+#write automatic (dumps, reserved copy)
+#write on demand (save)
+
+- Prompt "Are you sure ..." on "start new month" action
+
+
 1) Current month
 #read
-- income and status (on start)
-- outcome (on start)
+- income and status                         (on start)
+- outcome                                   (on start)
 #write
-- income and status (on some action)
-- outcome (on some action)
-/*automatic write*/
-- history (at the and of the month)
-- extra_expense (at the and of the month)
+- income and status                         (on some action)
+- outcome                                   (on some action)
+- history (at the and of the month)         (on some action)
+- extra_expense (at the and of the month)   (on some action)
 2) History
 #read
 - history (on start)
@@ -23,7 +51,8 @@ for each view (page) make netx methods:
 - goals_name (on start)
 - goals_in_time (on start)
 #write
-- make a record in each table or in both for one shot
+- goals_name (on action)
+- goals_in_time (on action)
 4) Plans
 #read
 - plals_name (on start)

@@ -1,4 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--<!DOCTYPE HTML PUBLIC "-//W3C//DTD  HTML 4.01      //EN" "http://www.w3.org/TR/html4/strict.dtd">-->
 <!--
 Design by Free CSS Templates
 http://www.freecsstemplates.org
@@ -16,7 +17,12 @@ Modified by VitalySwipe
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
-		<title>ОЛОЛОША TEAM</title>
+		<title>NerVe</title>
+		<style type='text/css'>
+			#centerLayer {
+		     text-align: center;
+		   }
+    	</style>
 		<link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css" />
 		<link href="http://fonts.googleapis.com/css?family=Kreon" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" type="text/css" href="/<?php echo $GLOBALS["home_path"]; ?>css/style.css" />
@@ -40,6 +46,7 @@ Modified by VitalySwipe
 		</script>
 	</head>
 	<body>
+		<div><marquee direction="right"><img src="img/running_dog.gif" /></marquee></div>
 		<div id="wrapper">
 			<div id="header">
 				<div id="logo">
@@ -48,9 +55,9 @@ Modified by VitalySwipe
 				<div id="menu">
 					<ul>
 						<li class="first active"><a href="/<?php echo $GLOBALS["home_path"]; ?>">Главная</a></li>
-						<li><a href="/<?php echo $GLOBALS["home_path"]; ?>services">Услуги</a></li>
-						<li><a href="/<?php echo $GLOBALS["home_path"]; ?>portfolio">Портфолио</a></li>
-						<li class="last"><a href="/<?php echo $GLOBALS["home_path"]; ?>contacts">Контакты</a></li>
+						<li><a href="/<?php echo $GLOBALS["home_path"]; ?>history">Услуги</a></li>
+						<li><a href="/<?php echo $GLOBALS["home_path"]; ?>plans">Портфолио</a></li>
+						<li class="last"><a href="/<?php echo $GLOBALS["home_path"]; ?>goals">Контакты</a></li>
 					</ul>
 					<br class="clearfix" />
 				</div>
@@ -82,9 +89,9 @@ Modified by VitalySwipe
 						<h3>Основное меню</h3>
 						<ul class="list">
 							<li class="first "><a href="/<?php echo $GLOBALS["home_path"]; ?>">Главная</a></li>
-							<li><a href="/<?php echo $GLOBALS["home_path"]; ?>services">Услуги</a></li>
-							<li><a href="/<?php echo $GLOBALS["home_path"]; ?>portfolio">Портфолио</a></li>
-							<li class="last"><a href="/<?php echo $GLOBALS["home_path"]; ?>contacts">Контакты</a></li>
+							<li><a href="/<?php echo $GLOBALS["home_path"]; ?>history">Услуги</a></li>
+							<li><a href="/<?php echo $GLOBALS["home_path"]; ?>plans">Портфолио</a></li>
+							<li class="last"><a href="/<?php echo $GLOBALS["home_path"]; ?>goals">Контакты</a></li>
 						</ul>
 					</div>
 				</div>
@@ -93,7 +100,7 @@ Modified by VitalySwipe
 						<?php include 'application/views/'.$content_view; ?>
 						<!--
 						<h2>Welcome to Accumen</h2>
-						<img class="alignleft" src="images/pic01.jpg" width="200" height="180" alt="" />
+						<img class="alignleft" src="img/pic01.jpg" width="200" height="180" alt="" />
 						<p>
 							This is <strong>Accumen</strong>, a free, fully standards-compliant CSS template by <a href="http://www.freecsstemplates.org/">Free CSS Templates</a>. The images used in this template are from <a href="http://fotogrph.com/">Fotogrph</a>. This free template is released under a <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attributions 3.0</a> license, so you are pretty much free to do whatever you want with it (even use it commercially) provided you keep the footer credits intact. Aside from that, have fun with it :)
 						</p>

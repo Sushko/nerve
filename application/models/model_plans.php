@@ -1,6 +1,6 @@
 <?php
 
-class Model_Portfolio extends Model
+class Model_Plans extends Model
 {
 	
 	public function get_data()
@@ -59,6 +59,14 @@ class Model_Portfolio extends Model
 			),
 
 		);
+	}
+
+	public function set_data($data)
+	{
+	    echo "<pre>";
+	    echo "plans say: ";
+	    print_r($data);
+	    echo "</pre>";
 	}
 
 }

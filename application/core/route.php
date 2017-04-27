@@ -11,11 +11,11 @@ class Route
 	static function start()
 	{
 		// контроллер и действие по умолчанию
-		$controller_name = 'Main';
+		$controller_name = 'Current_month';
 		$action_name = 'index';
 
 
-		$GLOBALS["home_path"] = 'nerve/examples/mvc/';		
+		$GLOBALS["home_path"] = 'nerve/';		
 		//$GLOBALS["store_path"] = '/nerve/db/';	
 		//$GLOBALS["store_path"] = $path = str_replace('\\', '/', realpath(dirname(__FILE__))).'/';//'c:/xampp/htdocs/nerve/db/';	
 		$routes = explode('/', substr($_SERVER['REQUEST_URI'],strlen($GLOBALS["home_path"])));

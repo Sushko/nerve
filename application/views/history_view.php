@@ -1,4 +1,4 @@
-<h1>Услуги</h1>
+<h1><?php echo $data?></h1>
 <p>
 Компания <a href="/<?php echo $GLOBALS["home_path"]; ?>">ОЛОЛОША TEAM</a> оказывает следующие услуги:
 <ul>
@@ -17,3 +17,12 @@
 Наша компания возьмет на себя выполнение процессов по разработке и сопровождению программного обеспечения. Это позволит вам сосредоточить внимание на развитии бизнеса и укреплении отношений с клиентами.
 </ul>
 </p>
+<form action="" method="post">
+<table class="login">
+	<tr>
+		<td><input type="submit" value="Send" name="btn" style="width: 60px; height: 25px;"></td>
+		<td><input type="text" name="data"></td>
+		<td><input type="hidden" name="save"></td>
+	</tr>
+</table>
+</form>

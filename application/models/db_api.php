@@ -18,8 +18,8 @@ function DB_dump()
         2. add mysqldump path to $PATH variablein
         3. put mysqldump to folder with "visible" path  /usr/local/sbin,/usr/local/bin,/usr/sbin,/usr/bin,/sbin,/bin
     */
-    exec('mysqldump -uroot --password= nerve >'.$GLOBALS["store_path"].date('Y-m-d') . '.sql', $output, $return_var);
-    //exec('/opt/lampp/bin/mysqldump -uroot --password= nerve >'.$GLOBALS["store_path"].date('Y-m-d') . '.sql', $output, $return_var);
+    //exec('mysqldump -uroot --password= nerve >'.$GLOBALS["store_path"].date('Y-m-d') . '.sql', $output, $return_var);
+    exec('/opt/lampp/bin/mysqldump -uroot --password= nerve >'.$GLOBALS["store_path"].date('Y-m-d') . '.sql', $output, $return_var);
 }
 
 /* empty tables ountome and income_and_status for new month */
@@ -127,4 +127,15 @@ function DB_fill_history()
         if (!$results) print ("error=".$connection->get_error()."<br>");
     }
 }
-DB_fill_history();
+function OS_type()
+{
+    //DB_fill_history();
+    /*
+    if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+        echo 'This is a server using Windows!';
+    } else {
+        echo 'This is a server not using Windows!';
+    }
+    */
+    return PHP_OS;
+}

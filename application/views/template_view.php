@@ -61,6 +61,12 @@ Modified by VitalySwipe
 					</ul>
 					<br class="clearfix" />
 				</div>
+				<div id="logout">
+					<form action="/<?php echo $GLOBALS["home_path"]; ?>" method="post">
+						<input type="submit" value="Выйти" name="btn" style="width: 150px; height: 30px;">
+						<input type="hidden" value="logout" name="logout">
+					</form>
+				</div>
 			</div>
 			</div>
 			<div id="page">

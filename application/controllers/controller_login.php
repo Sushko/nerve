@@ -23,7 +23,7 @@ class Controller_Login extends Controller
 				
 				session_start(); echo $_SESSION['admin'];
 				$_SESSION['admin'] = $password;
-				header('Location:/'.$GLOBALS["home_path"].'admin/');
+				header('Location:/'.$GLOBALS["home_path"]);
 			}
 			else
 			{

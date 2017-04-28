@@ -46,9 +46,9 @@ Modified by VitalySwipe
 		</script>
 	</head>
 	<body>
-		<div><marquee direction="right"><img src="img/running_dog.gif" /></marquee></div>
 		<div id="wrapper">
 			<div id="header">
+			<div id="dog"><marquee direction="right"><img src="img/running_dog.gif" /></marquee>
 				<div id="logo">
 					<a href="/<?php echo $GLOBALS["home_path"]; ?>">ОЛОЛОША</span> <span class="cms">TEAM</span></a>
 				</div>
@@ -61,6 +61,7 @@ Modified by VitalySwipe
 					</ul>
 					<br class="clearfix" />
 				</div>
+			</div>
 			</div>
 			<div id="page">
 				<div id="sidebar">

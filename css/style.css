@@ -112,6 +112,10 @@ a {
 	background: url(../img/cap.jpg) no-repeat 85px 30px;
 }
 
+#dog img {
+	position: relative;
+}
+
 #logo {
 	position: absolute;
 	top: 40px;

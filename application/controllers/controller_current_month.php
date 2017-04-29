@@ -19,6 +19,6 @@ class Controller_Current_month extends Controller
 		}
 
 		$data = $this->model->get_data();
-		$this->view->generate('сurrent_month_view.php', 'template_view.php', $data);
+		$this->view->generate('current_month_view.php', 'template_view.php', $data);
 	}
 }

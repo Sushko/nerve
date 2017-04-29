@@ -10,27 +10,52 @@ class Route
 
 	static function start()
 	{
+		$GLOBALS["home_path"] = 'nerve/';		
+	
+		if(isset($_POST['logout']) && ($_POST['logout']=='logout'))
+		{
+			session_start();
+			session_destroy();
+			header('Location:/'.$GLOBALS["home_path"]);
+		}
+	
 		// контроллер и действие по умолчанию
 		$controller_name = 'Current_month';
 		$action_name = 'index';
 
+		session_start();
 
-		$GLOBALS["home_path"] = 'nerve/';		
-		//$GLOBALS["store_path"] = '/nerve/db/';	
-		//$GLOBALS["store_path"] = $path = str_replace('\\', '/', realpath(dirname(__FILE__))).'/';//'c:/xampp/htdocs/nerve/db/';	
-		$routes = explode('/', substr($_SERVER['REQUEST_URI'],strlen($GLOBALS["home_path"])));
+		/*
+		Для простоты, в нашем случае, проверяется равенство сессионной переменной admin прописанному
+		в коде значению — паролю. Такое решение не правильно с точки зрения безопасности.
+		Пароль должен храниться в базе данных в захешированном виде, но пока оставим как есть.
+		*/
+		if(isset($_SESSION['admin']) && ($_SESSION['admin']=='12345'))
+		{echo '1';
+	
+			//$GLOBALS["store_path"] = '/nerve/db/';	
+			//$GLOBALS["store_path"] = $path = str_replace('\\', '/', realpath(dirname(__FILE__))).'/';//'c:/xampp/htdocs/nerve/db/';	
+			$routes = explode('/', substr($_SERVER['REQUEST_URI'],strlen($GLOBALS["home_path"])));
 
-		// получаем имя контроллера
-		if ( !empty($routes[1]) )
-		{	
-			$controller_name = $routes[1];
+			// получаем имя контроллера
+			if ( !empty($routes[1]) )
+			{	
+				$controller_name = $routes[1];
+			}
+			
+			// получаем имя экшена
+			if ( !empty($routes[2]) )
+			{
+				$action_name = $routes[2];
+			}
 		}
-		
-		// получаем имя экшена
-		if ( !empty($routes[2]) )
-		{
-			$action_name = $routes[2];
+		else
+		{echo '2';
+			session_destroy();
+			// создаем контроллер
+			$controller_name = 'Login';
 		}
+
 
 		// добавляем префиксы
 		$model_name = 'Model_'.$controller_name;

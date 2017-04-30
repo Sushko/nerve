@@ -116,6 +116,10 @@ a {
 	position: relative;
 }
 
+#logout {
+	float: right;
+}
+
 #logo {
 	position: absolute;
 	top: 40px;

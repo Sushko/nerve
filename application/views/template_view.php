@@ -26,7 +26,7 @@ Modified by VitalySwipe
 		<link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css" />
 		<link href="http://fonts.googleapis.com/css?family=Kreon" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" type="text/css" href="/<?php echo $GLOBALS["home_path"]; ?>css/style.css" />
-		<script src="/<?php echo $GLOBALS["home_path"]; ?>js/jquery-1.6.2.js" type="text/javascript"></script>
+		<script src="/<?php echo $GLOBALS["home_path"]; ?>js/jquery-3.2.1.js" type="text/javascript"></script>
 		<script type="text/javascript">
 		// return a random integer between 0 and number
 		function random(number) {
@@ -47,6 +47,12 @@ Modified by VitalySwipe
 	</head>
 	<body>
 		<div id="wrapper">
+			<div id="logout">
+				<form action="/<?php echo $GLOBALS["home_path"]; ?>" method="post">
+					<input type="submit" value="Выйти" name="btn" style="width: 150px; height: 30px;">
+					<input type="hidden" value="logout" name="logout">
+				</form>
+			</div>
 			<div id="header">
 			<div id="dog"><marquee direction="right"><img src="img/running_dog.gif" /></marquee>
 				<div id="logo">
@@ -60,12 +66,6 @@ Modified by VitalySwipe
 						<li class="last"><a href="/<?php echo $GLOBALS["home_path"]; ?>goals">Контакты</a></li>
 					</ul>
 					<br class="clearfix" />
-				</div>
-				<div id="logout">
-					<form action="/<?php echo $GLOBALS["home_path"]; ?>" method="post">
-						<input type="submit" value="Выйти" name="btn" style="width: 150px; height: 30px;">
-						<input type="hidden" value="logout" name="logout">
-					</form>
 				</div>
 			</div>
 			</div>

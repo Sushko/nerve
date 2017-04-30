@@ -1,14 +1,14 @@
 <?php
-//include "dbAPI.php";
 class Model_Current_month extends Model
 {
 	
 	public function get_data()
 	{
 		
+		include "db_api.php";
 		// Здесь мы просто сэмулируем реальные данные.
 		
-		return PHP_OS;
+		return OS_type();
 	}
 
 	public function set_data($data)

@@ -1,6 +1,6 @@
 <?php
 include "dbAPI.php";
-$GLOBALS["store_path"] = $path = str_replace('\\', '/', realpath(dirname(__FILE__))).'/';//'c:/xampp/htdocs/nerve/db/';
+$GLOBALS["store_path"] = str_replace('\\', '/', realpath(dirname(__FILE__))).'/';//'c:/xampp/htdocs/nerve/db/';
 
 /* function for debug print*/
 function _dbg($value)
@@ -138,4 +138,23 @@ function OS_type()
     }
     */
     return PHP_OS;
+}
+/* fill history table with past month data from ountome and income_and_status */
+function DB_test_data()
+{
+    global $connection;
+
+    // fetch data from outcome
+    $sql = "SELECT * FROM `outcome`";
+    $results = $connection->query($sql);
+    if (!$results) print ("error=".$connection->get_error()."<br>");
+    else $outcome = sum_month($results);
+
+    // // fetch data from income_and_status
+    // $sql = "SELECT * FROM `income_and_status`";
+    // $results = $connection->query($sql);
+    // if (!$results) print ("error=".$connection->get_error()."<br>");
+    // else $income_and_status = $results->fetch_row();
+
+    return $outcome;
 }

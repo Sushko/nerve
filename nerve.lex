@@ -1,3 +1,69 @@
+#########################################
+<Nerve> = "Электронная нервная система" #
+#########################################
+! usd confertation rate on common part of the sheet
+! "History and statistics" sheet
+Simple design
+
+
+<Fill DB info till September>
+- fill outcome files           April.2017   - August.2017
+- fill income_and_status files January.2013 - August.2017
+- make temp script to fill history table from outcome and income_and_status files
+- update goals table (divide income and outcome into sub collumns)
+- Fill goals table
+- review plans table (how should it works) and 
+- fill temp plans for the next month
+- !!make unified API for set/get data from DB with parameters, table name, field, and so on!!
+
+1) Fill DB info till September
+2) Make simple tables with fetched data to all pages (current month, history, plans)
+3) Make design of Pages and functionality (Simple design)
+4) Implement design
+
+/* Functionality */
+    - login(one user)
+    - logout
+    - 4 pages (+ page login)
+    - each page support set/get function
+    - dump nerve DB
+    - save daily outcome data in log file
+    - fill history table with past month data from ountome and income_and_status
+    - empty tables outcome and income_and_status for new month
+DB_save_curMonth_outcome - saves currnet monty file name
+
+
+
+
+
+
+
+
+
+
+
+Milestones:
+I.  budgeting in raw version
+II. budgeting on HW
+III.budgeting on HW with interface
+IV. + additional basic functionality (planning, usd rates, weather etc.)
+V.  complete nerve 1.0.
+
+
+• review existing project and make plan
+• complete base web part of "online budgeting"
+• install server on BBB HW
+• secure access
+• move base web part on HW
+• add UI
+• make simple application to access to nerve through mobile devices (Android, iPhone)
+• enjoy!
+
+
+- курс доллара
+- погода
+- заход/восход солнца
+
 +) rename
     ГЛАВНАЯ     -> Current month
     УСЛУГИ      -> History
@@ -167,7 +233,7 @@ export mysql table csv php
 
 я копирую данные из исходных таблиц в таблицу в нужном формате
 скрипт берет данные из таблици за указаный месяц и отображает его мне в черновом виде
-по нажатию некоторой кнопки "сделаем это" данные из этой таблици записываются в таблицу "history" и создается некий файл с расходами за месяц (по дням) - по суди дамп таблици "outcome"
+по нажатию некоторой кнопки "сделаем это" данные из этой таблици записываются в таблицу "history" и создается некий файл с расходами за месяц (по дням) - по сути дамп таблици "outcome"
 
 
 
@@ -233,11 +299,11 @@ CURRENT MONTH:
 ########################################################################################################################
 #    NerVe Tables architecture v0.1                                                                                    #
 #                                    (life goals + their costs; earning in years)                                      #
-#                                                        -----                                                         #
-#                                                       |GOALS|                                                        #
-#                                                        -----                                                         #
-#                                                          /\                                                          #
-#                                                         /  \                                                         #
+#                                                          -----                                                       #
+#                                                         |GOALS|                                                      #
+#                                                          -----                                                       #
+#                                                            /\                                                        #
+#                                                           /  \                                                       #
 #                                         -------   /   -------------  \   -----                                       #
 # (+summary of previous months, years)   |HISTORY| <   |CURRENT MONTH|  > |PLANS| (expences plan for next month, year) #
 #                                         -------   \   -------------  /   -----                                       #
@@ -318,7 +384,8 @@ CURRENT MONTH:
 #        |      |       |        |         |               |        |    |       |      |      |                       #
 #        |      |       |        |         |               |        |    |       |      |      |                       #
 #                                                                                                                      #
-#    Варьируя записидат в таблице можно будет перейти от планов по месяцам к планам по годам                           #
+#    + разделить income and outcome на составляющие                                                                    #
+#   Варьируя записи дат в таблице можно будет перейти от планов по месяцам к планам по годам                           #
 #   Конец года - 12.xx (декабрь n-года)                                                                                #
 #   Выбирая записи декабря каждого года получим цели по годам                                                          #
 #   Первые n лет цили расписаны по месяцам                                                                             #
@@ -412,7 +479,7 @@ current views:
 #планы
 A) плановые лимиты расходов по каждой статье на месяц 
     (высчитать исходя из предыдущих расходов. 
-     Разделить на зоды зел/жел/кр. 
+     Разделить на зоны зел/жел/кр. 
      зел - до лимита, жел - в 70-80% не превышалась, кр - больше)
 B) плановые расходы на текущий месяц
 C) плановые расходы на год 

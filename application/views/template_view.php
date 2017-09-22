@@ -47,13 +47,13 @@ Modified by VitalySwipe
 	</head>
 	<body>
 		<div id="wrapper">
+			<div id="header">
 			<div id="logout">
 				<form action="/<?php echo $GLOBALS["home_path"]; ?>" method="post">
 					<input type="submit" value="Выйти" name="btn" style="width: 150px; height: 30px;">
 					<input type="hidden" value="logout" name="logout">
 				</form>
 			</div>
-			<div id="header">
 			<div id="dog"><marquee direction="right"><img src="img/running_dog.gif" /></marquee>
 				<div id="logo">
 					<a href="/<?php echo $GLOBALS["home_path"]; ?>">ОЛОЛОША</span> <span class="cms">TEAM</span></a>

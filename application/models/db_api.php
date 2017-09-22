@@ -1,6 +1,6 @@
 <?php
 include "dbAPI.php";
-$GLOBALS["store_path"] = str_replace('\\', '/', realpath(dirname(__FILE__))).'/';//'c:/xampp/htdocs/nerve/db/';
+$GLOBALS["store_path"] = str_replace('\\', '/', realpath(dirname("db/nerve.sql"))).'/';//'c:/xampp/htdocs/nerve/db/';
 
 /* function for debug print*/
 function _dbg($value)
@@ -13,21 +13,26 @@ function _dbg($value)
 /* dump nerve DB */
 function DB_dump()
 {
-    /*to make this command work do any of 3: 
+    /*to make this command work do any of 3:
         1. point full path to mysqldump ( Windows: c:\xampp\mysql\bin\ ; Linux: /opt/lampp/bin/ )
         2. add mysqldump path to $PATH variablein
         3. put mysqldump to folder with "visible" path  /usr/local/sbin,/usr/local/bin,/usr/sbin,/usr/bin,/sbin,/bin
     */
     //exec('mysqldump -uroot --password= nerve >'.$GLOBALS["store_path"].date('Y-m-d') . '.sql', $output, $return_var);
-    exec('/opt/lampp/bin/mysqldump -uroot --password= nerve >'.$GLOBALS["store_path"].date('Y-m-d') . '.sql', $output, $return_var);
+    exec('/opt/lampp/bin/mysqldump -uroot --password= nerve > '.$GLOBALS["store_path"].date('Y-m-d') . '.sql', $output, $return_var);
 }
 
-/* empty tables ountome and income_and_status for new month */
+/* empty tables outcome and income_and_status for new month */
 function DB_empty_curMonth_tables()
 {
     global $connection;
     $result = $connection->query("TRUNCATE TABLE outcome");
     $result = $connection->query("TRUNCATE TABLE income_and_status");
+    if (!$result) {
+        print ("error=".$connection->get_error()."<br>");
+        return false;
+    }
+    return true;
 }
 
 /* save daily outcome data in log file */
@@ -36,7 +41,11 @@ function DB_save_curMonth_outcome()
     global $connection;
     $sql = "SELECT * INTO OUTFILE '".$GLOBALS["store_path"].strtolower(date('Y.F')).".csv' FIELDS TERMINATED BY ',' ENCLOSED BY '\"' FROM `outcome`";
     $result = $connection->query($sql);
-    if (!$result) print ("error=".$connection->get_error()."<br>");
+    if (!$result) {
+        print ("error=".$connection->get_error()."<br>");
+        return false;
+    }
+    return true;
 }
 
 /* summarize expends by groups */
@@ -78,7 +87,7 @@ function DB_fill_history()
     $sql = "SELECT * FROM `history` WHERE year='$year' AND month='$month'";
     $results = $connection->query($sql);
     if (!$results) print ("error=".$connection->get_error()."<br>");
-    _dbg($results->num_rows);
+    //_dbg($results->num_rows);
     if ($results->num_rows != 0) echo "Record for this year/month already exist";
     else
     {
@@ -122,9 +131,13 @@ function DB_fill_history()
             '$income_and_status[12]',   /*usd_ratio*/
             '$income_and_status[13]'    /*notes*/
             );";
-        _dbg($sql);
+        //_dbg($sql);
         $results = $connection->query($sql);
-        if (!$results) print ("error=".$connection->get_error()."<br>");
+        if (!$results) {
+            print ("error=".$connection->get_error()."<br>");
+            return false;
+        }
+        return true;
     }
 }
 function OS_type()
@@ -139,22 +152,16 @@ function OS_type()
     */
     return PHP_OS;
 }
-/* fill history table with past month data from ountome and income_and_status */
+/* test data functions */
 function DB_test_data()
 {
-    global $connection;
 
-    // fetch data from outcome
-    $sql = "SELECT * FROM `outcome`";
-    $results = $connection->query($sql);
-    if (!$results) print ("error=".$connection->get_error()."<br>");
-    else $outcome = sum_month($results);
+    $result = DB_save_curMonth_outcome();
+    if ($result != true) return false;
+    $result = DB_fill_history();
+    if ($result != true) return false;
+    DB_empty_curMonth_tables();
 
-    // // fetch data from income_and_status
-    // $sql = "SELECT * FROM `income_and_status`";
-    // $results = $connection->query($sql);
-    // if (!$results) print ("error=".$connection->get_error()."<br>");
-    // else $income_and_status = $results->fetch_row();
-
-    return $outcome;
 }
+//DB_save_curMonth_outcome();
+//DB_fill_history();

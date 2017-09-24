@@ -89,7 +89,7 @@ V.  complete nerve 1.0.
 for each view (page) make next methods:
     get data (extract needed data from corresponding tables)
     refresh/update/reload (reload data from tables after some changes) - maybe neede only "get data" or "get data" with parameters to reload exact data but not all tables
-    set data (set certain data tosertain table). Think about it (by field / whole tables / by group)
+    set data (set certain data to certain table). Think about it (by field / whole tables / by group)
 
 #read on start (automatic)
 #read on demand (reload, specified by fields / groups)

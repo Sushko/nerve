@@ -26,9 +26,13 @@ function DB_dump()
 function DB_empty_curMonth_tables()
 {
     global $connection;
-    $result = $connection->query("TRUNCATE TABLE outcome");
-    $result = $connection->query("TRUNCATE TABLE income_and_status");
-    if (!$result) {
+    $results = $connection->query("TRUNCATE TABLE outcome");
+    if (!$results) {
+        print ("error=".$connection->get_error()."<br>");
+        return false;
+    }
+    $results = $connection->query("TRUNCATE TABLE income_and_status");
+    if (!$results) {
         print ("error=".$connection->get_error()."<br>");
         return false;
     }
@@ -40,8 +44,8 @@ function DB_save_curMonth_outcome()
 {
     global $connection;
     $sql = "SELECT * INTO OUTFILE '".$GLOBALS["store_path"].strtolower(date('Y.F')).".csv' FIELDS TERMINATED BY ',' ENCLOSED BY '\"' FROM `outcome`";
-    $result = $connection->query($sql);
-    if (!$result) {
+    $results = $connection->query($sql);
+    if (!$results) {
         print ("error=".$connection->get_error()."<br>");
         return false;
     }
@@ -156,12 +160,96 @@ function OS_type()
 function DB_test_data()
 {
 
-    $result = DB_save_curMonth_outcome();
-    if ($result != true) return false;
-    $result = DB_fill_history();
-    if ($result != true) return false;
+    $results = DB_save_curMonth_outcome();
+    if ($results != true) return false;
+    $results = DB_fill_history();
+    if ($results != true) return false;
     DB_empty_curMonth_tables();
 
 }
-//DB_save_curMonth_outcome();
-//DB_fill_history();
+/* fill history table for the first time */
+function fill_history_1st()
+{
+     global $connection;
+
+    // 1. fetch all data from income_and_status
+    $sql = "SELECT * FROM `income_and_status`";
+    $res = $connection->query($sql);
+    if (!$res) print ("error=".$connection->get_error()."<br>");
+    else 
+    {
+        // 2. get data from income_and_status row by row
+        if($res->num_rows) {
+            while($income_and_status = $res->fetch_row()) {
+                // 3. load outcome table with data from log file relevant to year/month from income_and_status
+                $sql = "LOAD DATA INFILE '".$GLOBALS["store_path"]."outcome.log/".strtolower(date("Y.F", strtotime($income_and_status[0]))).".csv' INTO TABLE outcome COLUMNS TERMINATED BY ',' ENCLOSED BY '\"' LINES TERMINATED BY '\n'";
+                $results = $connection->query($sql);
+                if (!$results) { print ("error=".$connection->get_error()."<br>"); return false; }
+                // 4. fetch data from outcome
+                $sql = "SELECT * FROM `outcome`";
+                $results = $connection->query($sql);
+                if (!$results) { print ("error=".$connection->get_error()."<br>"); return false; }
+                else $outcome = sum_month($results);
+
+                $year = date('Y', strtotime($income_and_status[0]));
+                $month = date('F', strtotime($income_and_status[0]));
+                // 5. check if record for this month/year exist in history table
+                $sql = "SELECT * FROM `history` WHERE year='$year' AND month='$month'";
+                $results = $connection->query($sql);
+                if (!$results) { print ("error=".$connection->get_error()."<br>"); return false; }
+                else
+                {
+                    // 6. insert data into history table
+                    $sql = "INSERT INTO `history` VALUES (
+                        '$year',                    /*year*/
+                        '$month',                   /*month*/
+                        '$income_and_status[1]',    /*lex_salary_avtor*/
+                        '$income_and_status[2]',    /*lex_salary_frog*/
+                        '$income_and_status[3]',    /*lex_salary_globallogic*/
+                        '$income_and_status[4]',    /*youleek_salary_mindshare*/
+                        '$income_and_status[5]',    /*parents*/
+                        '$income_and_status[6]',    /*sales*/
+                        '$income_and_status[7]',    /*presented*/
+                        '$income_and_status[8]',    /*government*/
+                        '$income_and_status[9]',    /*other*/
+                         
+                        '$outcome[1]',              /*utilities_house_keeping*/
+                        '$outcome[2]',              /*utilities_garage*/
+                        '$outcome[3]',              /*utilities_internet*/
+                        '$outcome[4]',              /*utilities_electricity*/
+                        '$outcome[5]',              /*utilities_gas*/
+                        '$outcome[6]',              /*utilities_water*/
+                        '$outcome[7]',              /*food*/
+                        '$outcome[8]',              /*domestic*/
+                        '$outcome[9]',              /*transportation*/
+                        '$outcome[10]',             /*car_maintain*/
+                        '$outcome[11]',             /*clothes*/
+                        '$outcome[12]',             /*health*/
+                        '$outcome[13]',             /*house_stuff*/
+                        '$outcome[14]',             /*kid_stuff*/
+                        '$outcome[15]',             /*entertainment*/
+                        '$outcome[16]',             /*presents*/
+                        '$outcome[17]',             /*study_development*/
+                        '$outcome[18]',             /*phone*/
+                        '$outcome[19]',             /*cigarette*/
+
+                        '$income_and_status[11]',   /*invest_amount*/
+                        '',                         /*capital*/
+                        '$income_and_status[10]',   /*balance*/
+                        '$income_and_status[12]',   /*usd_ratio*/
+                        '$income_and_status[13]'    /*notes*/
+                        );";
+                        $results = $connection->query($sql);
+                        if (!$results) { print ("error=".$connection->get_error()."<br>"); return false; }
+                }
+                // 7. delete all data form outcome table
+                $results = $connection->query("TRUNCATE TABLE outcome");
+                if (!$results) { print ("error=".$connection->get_error()."<br>"); return false; }
+            }
+        }
+    }
+}
+
+//fill_history_1st();
+//DB_empty_curMonth_tables();
+//DB_dump();

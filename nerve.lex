@@ -7,17 +7,18 @@ Simple design
 
 
 <Fill DB info till September>
-- fill outcome files           April.2017   - August.2017
-- fill income_and_status files January.2013 - August.2017
++ fill outcome files           April.2017   - August.2017
++ fill income_and_status files January.2013 - August.2017
 - make temp script to fill history table from outcome and income_and_status files
+- fill extra_expense table
 - update goals table (divide income and outcome into sub collumns)
 - Fill goals table
 - review plans table (how should it works) and 
 - fill temp plans for the next month
-- !!make unified API for set/get data from DB with parameters, table name, field, and so on!!
 
 1) Fill DB info till September
 2) Make simple tables with fetched data to all pages (current month, history, plans)
+- !!make unified API for set/get data from DB with parameters, table name, field, and so on!!
 3) Make design of Pages and functionality (Simple design)
 4) Implement design
 

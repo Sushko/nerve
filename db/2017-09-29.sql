@@ -30,7 +30,7 @@ CREATE TABLE `extra_expense` (
   `type` enum('Big expense','Extra loss') NOT NULL,
   `cost` int(11) NOT NULL,
   PRIMARY KEY (`extra_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,6 +39,7 @@ CREATE TABLE `extra_expense` (
 
 LOCK TABLES `extra_expense` WRITE;
 /*!40000 ALTER TABLE `extra_expense` DISABLE KEYS */;
+INSERT INTO `extra_expense` VALUES (1,2013,'September','Отпуск: Крит(Греция)','Big expense',2300000),(2,2014,'February','ДТП','Big expense',2100000),(3,2014,'March','ДТП','Big expense',5500000),(4,2014,'April','ДТП','Big expense',3600000),(5,2014,'August','Отпуск: Турция','Big expense',3600000),(6,2014,'September','Машина: Nissan Qashqai','Big expense',19100000),(7,2014,'Some month','UAH devaluation: bonuses ','Extra loss',1800000),(8,2014,'Some month','UAH devaluation: OTP deposit','Extra loss',1800000),(9,2014,'Some month','USD buy','Extra loss',3600000),(10,2015,'January','Отпуск: билеты США','Big expense',3400000),(11,2015,'May','Отпуск: США','Big expense',5730000),(12,2015,'Some month','USD buy','Extra loss',2350000),(13,2015,'Some month','Lend','Extra loss',2350000),(14,2016,'February','Отпуск: Буковель','Big expense',1500000),(15,2016,'June','Отпуск: Испания','Big expense',5390000),(16,2016,'September','Отпуск: Испания','Big expense',3130000),(17,2016,'November','Отпуск: Австрия','Big expense',660000),(18,2016,'December','Отпуск: Австрия','Big expense',2070000),(19,2016,'Some month','Lend','Extra loss',3945000),(20,2016,'Some month','Present','Extra loss',2630000),(21,2017,'May','Роддом: Вера','Big expense',2650000),(22,2017,'August','Отпуск: Карпаты','Big expense',1289500);
 /*!40000 ALTER TABLE `extra_expense` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -52,8 +53,13 @@ DROP TABLE IF EXISTS `goals_in_time`;
 CREATE TABLE `goals_in_time` (
   `year` year(4) NOT NULL,
   `month` enum('January','February','March','April','May','June','July','August','September','October','November','December','Some month') NOT NULL,
-  `income` int(11) NOT NULL,
-  `outcome` int(11) NOT NULL,
+  `inc_Lex` int(11) NOT NULL,
+  `inc_Youleek` int(11) NOT NULL,
+  `inc_add1` int(11) NOT NULL,
+  `inc_add2` int(11) NOT NULL,
+  `out_base` int(11) NOT NULL,
+  `out_extra` int(11) NOT NULL,
+  `out_vacation` int(11) NOT NULL,
   `invest_amount` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -64,6 +70,7 @@ CREATE TABLE `goals_in_time` (
 
 LOCK TABLES `goals_in_time` WRITE;
 /*!40000 ALTER TABLE `goals_in_time` DISABLE KEYS */;
+INSERT INTO `goals_in_time` VALUES (2017,'January',2800,0,0,0,1500,0,0,1020),(2017,'January',2800,0,1,0,1500,0,0,1021),(2017,'January',2800,0,1,0,1500,0,0,1021),(2017,'January',2800,0,20,0,1500,0,0,1038),(2018,'December',3000,0,100,0,1500,200,0,1090),(2018,'January',3000,0,100,0,1000,200,1000,590),(2018,'January',3000,0,400,0,1500,200,0,1360),(2018,'January',3000,0,400,0,1500,1000,0,560),(2018,'January',3000,0,400,0,1500,200,0,1360),(2018,'January',3000,0,400,0,1500,200,0,1360),(2018,'January',3000,0,400,0,1500,200,1000,360),(2018,'January',3000,0,500,0,1000,200,1500,450),(2018,'January',3500,0,500,0,1700,300,0,1600),(2018,'January',3500,0,500,0,1700,300,0,1600),(2018,'January',3500,0,500,0,1700,300,0,1600),(2018,'January',3500,0,500,0,1700,1000,0,900),(2019,'December',3500,0,500,0,1700,300,0,1600),(2019,'January',3500,0,500,0,1200,300,1000,1100),(2019,'January',3500,0,500,0,1700,300,0,1600),(2019,'January',3500,0,500,0,1700,1000,0,900),(2019,'January',3500,0,600,0,1700,300,0,1690),(2019,'January',3500,0,700,0,1700,300,0,1780),(2019,'January',3500,0,700,0,1700,300,1500,280),(2019,'January',3500,0,800,0,1200,300,2000,370),(2019,'January',3700,0,1000,0,1800,300,0,2130),(2019,'January',3700,0,1000,0,1800,300,0,2130),(2019,'January',3700,0,1000,0,1800,300,0,2130),(2019,'January',3700,0,1000,0,1800,1000,0,1430),(2020,'December',3700,0,1000,0,1800,300,0,2130),(2020,'January',3700,0,1000,0,1300,300,1500,1130),(2020,'January',3700,0,1000,100,1800,300,0,2220),(2020,'January',3700,0,1000,100,1800,1000,0,1520),(2020,'January',3700,0,1000,100,1800,300,0,2220),(2020,'January',3700,1000,1000,100,1800,300,0,3120),(2020,'January',3700,1000,1000,100,1800,300,2000,1120),(2020,'January',3900,1000,1200,100,1300,300,2000,1980),(2020,'January',3900,1000,1200,100,2000,300,0,3280),(2020,'January',3900,1000,1200,300,2000,300,0,3460),(2020,'January',3900,1000,1200,300,2000,300,0,3460),(2020,'January',3900,1000,1500,300,2000,1000,0,3030),(2021,'December',3900,1000,1500,300,2000,500,0,3530),(2021,'January',3900,1000,1500,300,1500,500,2000,2030),(2021,'January',3900,1000,1500,300,2000,500,0,3530),(2021,'January',3900,1000,1500,300,2000,1000,0,3030),(2021,'January',3900,1000,1500,500,2000,500,0,3710),(2021,'January',3900,1000,1500,500,2000,500,0,3710),(2021,'January',3900,1000,1500,500,2000,500,2000,1710),(2021,'January',3900,1000,2000,500,1500,500,2500,2160),(2021,'January',4000,1000,2000,500,2500,500,0,3750),(2021,'January',4000,1000,2000,500,2200,500,0,4050),(2021,'January',4000,1000,2000,500,2200,500,0,4050),(2021,'January',4000,1000,2000,700,2200,1000,0,3730),(2022,'December',4000,1500,2000,1000,2200,500,0,4950),(2022,'January',4000,1500,2000,1000,1700,500,3000,2450),(2022,'January',4000,1500,2000,1000,2200,500,0,4950),(2022,'January',4000,1500,2000,1000,2200,1000,0,4450),(2022,'January',4500,1500,2000,1000,2200,500,0,5400),(2022,'January',4500,1500,2000,1000,2200,500,0,5400),(2022,'January',4500,1500,2000,1000,2200,500,2500,2900),(2022,'January',4500,1500,2500,1500,1700,500,2500,4300),(2022,'January',4500,1500,2500,1500,2500,500,0,6000),(2022,'January',4500,1500,2500,1500,2500,500,0,6000),(2022,'January',4500,1500,2500,1500,2500,500,0,6000),(2022,'January',4500,1500,2500,1500,2500,1000,0,5500),(2023,'December',4500,1500,2500,1500,2500,500,0,6000),(2023,'January',4500,1500,2500,1500,2000,500,3500,3000),(2023,'January',4500,1500,2500,1500,2500,500,0,6000),(2023,'January',4500,1500,2500,1500,2500,1000,0,5500),(2023,'January',4500,1500,2500,1500,2500,500,0,6000),(2023,'January',4500,1500,2500,1500,2500,500,0,6000),(2023,'January',4500,1500,2500,1500,2500,500,2500,3500),(2023,'January',4500,1500,2500,1500,2000,500,2500,4000),(2023,'January',5000,2000,3000,2000,3000,500,0,7300);
 /*!40000 ALTER TABLE `goals_in_time` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -80,7 +87,7 @@ CREATE TABLE `goals_name` (
   `cost` int(11) NOT NULL,
   `year` year(4) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -89,6 +96,7 @@ CREATE TABLE `goals_name` (
 
 LOCK TABLES `goals_name` WRITE;
 /*!40000 ALTER TABLE `goals_name` DISABLE KEYS */;
+INSERT INTO `goals_name` VALUES (1,'Car for Youleek',10000,2017),(2,'Townhouse',60000,2020),(3,'Car for Lex',10000,2020),(4,'Townhouse',20000,2021),(5,'Masha education',20000,2027),(6,'Masha education',20000,2028),(7,'Masha education',20000,2029),(8,'Masha education',20000,2030),(9,'Masha education',20000,2031),(10,'Vera education',20000,2033),(11,'Vera education',20000,2034),(12,'Vera education',20000,2035),(13,'Vera education',20000,2036),(14,'Mash appartments',50000,2036),(15,'Vera education',20000,2037),(16,'Vera appartment',50000,2042);
 /*!40000 ALTER TABLE `goals_name` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -284,7 +292,7 @@ CREATE TABLE `plans_in_time` (
   `plan_id` int(11) NOT NULL,
   `month` enum('January','February','March','April','May','June','July','August','September','October','November','December','Some month') NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -293,6 +301,7 @@ CREATE TABLE `plans_in_time` (
 
 LOCK TABLES `plans_in_time` WRITE;
 /*!40000 ALTER TABLE `plans_in_time` DISABLE KEYS */;
+INSERT INTO `plans_in_time` VALUES (1,1,'October'),(2,2,'October'),(3,4,'October'),(4,5,'October'),(5,6,'October'),(6,7,'October'),(7,8,'October'),(8,1,'November'),(9,2,'November'),(10,4,'November'),(11,5,'November'),(12,6,'November'),(13,7,'November'),(14,8,'November'),(15,1,'December'),(16,2,'December'),(17,4,'December'),(18,5,'December'),(19,6,'December'),(20,7,'December'),(21,8,'December'),(22,3,'November'),(23,14,'October'),(24,16,'October'),(25,12,'October'),(26,10,'October'),(27,10,'October'),(28,10,'October'),(29,10,'October'),(30,14,'November'),(31,14,'November'),(32,12,'November'),(33,12,'November'),(34,10,'November'),(35,10,'November'),(36,10,'November'),(37,10,'December'),(38,10,'December'),(39,18,'October'),(40,19,'October'),(41,20,'October'),(42,21,'October'),(43,22,'October'),(44,24,'October'),(45,25,'October'),(46,25,'October'),(47,17,'November'),(48,19,'November'),(49,23,'November'),(50,18,'December'),(51,19,'December'),(52,27,'October'),(53,26,'November'),(54,30,'October'),(55,30,'December'),(56,30,'November'),(57,30,'November'),(58,28,'November'),(59,28,'December'),(60,28,'December'),(61,31,'October'),(62,32,'October');
 /*!40000 ALTER TABLE `plans_in_time` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -309,7 +318,7 @@ CREATE TABLE `plans_name` (
   `out_group_id` int(11) NOT NULL,
   `cost` int(15) NOT NULL,
   PRIMARY KEY (`plan_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -318,6 +327,7 @@ CREATE TABLE `plans_name` (
 
 LOCK TABLES `plans_name` WRITE;
 /*!40000 ALTER TABLE `plans_name` DISABLE KEYS */;
+INSERT INTO `plans_name` VALUES (1,'Коммун.: ОСББ',1,45000),(2,'Коммун.: Гараж',2,60000),(3,'Коммун.: Интернет',3,14000),(4,'Коммун.: Свет',4,20000),(5,'Коммун.: Газ',5,80000),(6,'Коммун.: Вода',6,30000),(7,'Парковка',10,100000),(8,'Школа (Маша)',17,850000),(9,'Юля одежда',11,50000),(10,'Юля одежда',11,100000),(11,'Лёша одежда',11,50000),(12,'Лёша одежда',11,10000),(13,'Маша одежда',11,50000),(14,'Маша одежда',11,100000),(15,'Вера одежда',11,50000),(16,'Вера одежда',11,100000),(17,'Вера вакцинация',12,200000),(18,'Вера массаж',12,150000),(19,'Бассейн',15,150000),(20,'Маша кардиолог',12,100000),(21,'Маша вакцинация',12,20000),(22,'Юля массаж',12,200000),(23,'Юля чистка лица',8,100000),(24,'Туалетная вода',8,100000),(25,'Косметика',8,120000),(26,'Вера крестины',15,700000),(27,'Маша ДР',15,700000),(28,'Новый Год',15,200000),(29,'Дни рождения',15,50000),(30,'Дни рождения',15,100000),(31,'Маша видео',15,250000),(32,'Страховка',10,100000);
 /*!40000 ALTER TABLE `plans_name` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -330,4 +340,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-09-26 10:00:34
+-- Dump completed on 2017-09-29 13:54:17

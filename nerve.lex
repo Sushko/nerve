@@ -9,10 +9,10 @@ Simple design
 <Fill DB info till September>
 + fill outcome files           April.2017   - August.2017
 + fill income_and_status files January.2013 - August.2017
-- make temp script to fill history table from outcome and income_and_status files
-- fill extra_expense table
-- update goals table (divide income and outcome into sub collumns)
-- Fill goals table
++ make temp script to fill history table from outcome and income_and_status files
++ fill extra_expense table
++ update goals table (divide income and outcome into sub collumns) (capital field?)
++ Fill goals table
 - review plans table (how should it works) and 
 - fill temp plans for the next month
 
@@ -35,7 +35,7 @@ DB_save_curMonth_outcome - saves currnet monty file name
 
 
 
-
++ Calculation of overspending and rest
 
 
 
@@ -378,12 +378,19 @@ CURRENT MONTH:
 #                                                          -----                                                       #
 #  goals_in_time: goal income/outcome/inv.amoutn for each month/year                                                   #
 #  goals_name:    big goals with their costs                                                                           #
-#                            goals_in_time                                     goals_name                              #
-#        +-------------------------------------------------+        +--------------------------+                       #
-#        | year | month | income | outcome | invest_amount |        | id | title | cost | year |                       #
-#        |------+-------+--------+---------+---------------|        |----+-------+------+------|                       #
-#        |      |       |        |         |               |        |    |       |      |      |                       #
-#        |      |       |        |         |               |        |    |       |      |      |                       #
+#                                               goals_in_time                                                          #
+# +------------------------------------------------------------------------------------------------------------------+ #
+# | year | month | inc_Lex | inc_Youleek | inc_add1 | inc_add2 | out_base | out_extra | out_vacation | invest_amount | #
+# |------+-------+---------+-------------+----------+----------+----------+-----------+--------------+---------------| #
+# |      |       |         |             |          |          |          |           |              |               | #
+# |      |       |         |             |          |          |          |           |              |               | #
+#                                                                                                                      #
+#                                                 goals_name                                                           #
+#                                      +--------------------------+                                                    #
+#                                      | id | title | cost | year |                                                    #
+#                                      |----+-------+------+------|                                                    #
+#                                      |    |       |      |      |                                                    #
+#                                      |    |       |      |      |                                                    #
 #                                                                                                                      #
 #    + разделить income and outcome на составляющие                                                                    #
 #   Варьируя записи дат в таблице можно будет перейти от планов по месяцам к планам по годам                           #

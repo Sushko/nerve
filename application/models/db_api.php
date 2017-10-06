@@ -92,7 +92,8 @@ function DB_fill_history()
     $results = $connection->query($sql);
     if (!$results) print ("error=".$connection->get_error()."<br>");
     //_dbg($results->num_rows);
-    if ($results->num_rows != 0) echo "Record for this year/month already exist";
+    if (!$results) { print ("error=".$connection->get_error()."<br>"); return false; }
+    if ($results->num_rows != 0) {echo "Record for year = $year and month = $month already exist<br>"; return false;}
     else
     {
         /* insert data into history table */
@@ -129,11 +130,11 @@ function DB_fill_history()
             '$outcome[18]',             /*phone*/
             '$outcome[19]',             /*cigarette*/
 
-            '$income_and_status[11]',   /*invest_amount*/
-            '',                         /*capital*/
-            '$income_and_status[10]',   /*balance*/
-            '$income_and_status[12]',   /*usd_ratio*/
-            '$income_and_status[13]'    /*notes*/
+            '$income_and_status[10]',   /*invest_amount*/
+            '$income_and_status[11]',   /*capital*/
+            '$income_and_status[12]',   /*carry-out*/
+            '$income_and_status[13]',   /*usd_ratio*/
+            '$income_and_status[14]'    /*notes*/
             );";
         //_dbg($sql);
         $results = $connection->query($sql);
@@ -197,6 +198,7 @@ function fill_history_1st()
                 $sql = "SELECT * FROM `history` WHERE year='$year' AND month='$month'";
                 $results = $connection->query($sql);
                 if (!$results) { print ("error=".$connection->get_error()."<br>"); return false; }
+                if ($results->num_rows != 0) {echo "Record for year = $year and month = $month already exist<br>"; }
                 else
                 {
                     // 6. insert data into history table
@@ -233,11 +235,11 @@ function fill_history_1st()
                         '$outcome[18]',             /*phone*/
                         '$outcome[19]',             /*cigarette*/
 
-                        '$income_and_status[11]',   /*invest_amount*/
-                        '',                         /*capital*/
-                        '$income_and_status[10]',   /*balance*/
-                        '$income_and_status[12]',   /*usd_ratio*/
-                        '$income_and_status[13]'    /*notes*/
+                        '$income_and_status[10]',   /*invest_amount*/
+                        '$income_and_status[11]',   /*capital*/
+                        '$income_and_status[12]',   /*carry-out*/
+                        '$income_and_status[13]',   /*usd_ratio*/
+                        '$income_and_status[14]'    /*notes*/
                         );";
                         $results = $connection->query($sql);
                         if (!$results) { print ("error=".$connection->get_error()."<br>"); return false; }
@@ -249,7 +251,27 @@ function fill_history_1st()
         }
     }
 }
-
-//fill_history_1st();
+/* fetch data from table */
+function get_tabel_data($table, $field, $key1 = null, $value1 = null, $key2 = null, $value2 = null)
+{
+    global $connection;
+    if ($field == 'all') $field ='*';
+    if (!$key1)         $sql = "SELECT $field FROM $table";
+    else if (!$key2)    $sql = "SELECT $field FROM $table WHERE $key1=$value1";
+    else                $sql = "SELECT $field FROM $table WHERE $key1=$value1 AND $key2=$value2";
+    //_dbg($sql);
+    $results = $connection->query($sql);
+    if (!$results) {
+        print ("error=".$connection->get_error()."<br>");
+        return false;
+    }
+    //_dbg($results);
+    return $results;
+}
+// get_tabel_data('history', 'lex_salary_globallogic');
+// get_tabel_data('history', 'lex_salary_globallogic', 'year', '2017');
+// get_tabel_data('history', 'lex_salary_globallogic', 'month', 4);
+// get_tabel_data('history', 'lex_salary_globallogic', 'month', 4, 'year', '2017');
 //DB_empty_curMonth_tables();
-//DB_dump();
+DB_dump();
+//fill_history_1st();

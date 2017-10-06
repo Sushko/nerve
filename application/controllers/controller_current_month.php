@@ -19,6 +19,7 @@ class Controller_Current_month extends Controller
 		}
 
 		$data = $this->model->get_data();
+		//generate table data from DB data here
 		$this->view->generate('current_month_view.php', 'template_view.php', $data);
 	}
 }

@@ -1,24 +1,66 @@
 #########################################
 <Nerve> = "Электронная нервная система" #
 #########################################
-! usd confertation rate on common part of the sheet
+! usd convertation rate on common part of the sheet
 ! "History and statistics" sheet
 Simple design
 
 
-<Fill DB info till September>
-+ fill outcome files           April.2017   - August.2017
-+ fill income_and_status files January.2013 - August.2017
-+ make temp script to fill history table from outcome and income_and_status files
-+ fill extra_expense table
-+ update goals table (divide income and outcome into sub collumns) (capital field?)
-+ Fill goals table
-- review plans table (how should it works) and 
-- fill temp plans for the next month
+- add capital field in income and status
+- fix issue in script which fill history from income_and status (and main script)
+- fill cappital field in income_and_status temp file
+- regenerate history table
 
-1) Fill DB info till September
+[CURRENT MONTH]
+# tables
+-- income_and_status -all
+-- outcome           -all
+-- outcome_planned   -all
+-- extra_expense     -by year/month
+-- goals_in_time     -by year/month   (fetched planned income, planned outcome and planned invest ammount)
+-- income_group      -all
+-- outcome_group     -all
+
++ Carry-over    (Single line)
++ Income      P (Table)         +mark matching to planned
+- Investment  P (Single line)   +mark matching to planned
+- Ouctome     P (Table)   + diagram on each element with progress bar match to planned; +mark matching to planned
+= Balance       (Single line)  maybe some warning like LOW, HIGH, MEDIUM
+
+Diagram of (?Income/?)Outcome/Investment/Balance ration
+
+?Extra expence? - where to put it
+
+
+[HISTORY]
+- history           -all
+- extra_expense     -all
+- income_group      -all
+- outcome_group     -all
+[GOALS]
+- goals_in_time     -all
+- goals_name        -all
+[PLANS]
+- plans_in_time     -all
+- plans_name        -all
+- outcome_group     -all
+
+
+
+
+
+<Make simple tables with fetched data to all pages (current month, history, plans)>
++ think and design of unified API for set/get data to/from DB with parameters, table name, field, and so on
++ implement unified API
++ make a list of tables and data to be fetched, writen
+- make interface and tables design (suitable view)
+- implement interface in views
+- implement data get APIs
+- think and design of unified API for set data to/from DB with parameters, table name, field, and so on
+- implement data set APIs
+
++) Fill DB info till September
 2) Make simple tables with fetched data to all pages (current month, history, plans)
-- !!make unified API for set/get data from DB with parameters, table name, field, and so on!!
 3) Make design of Pages and functionality (Simple design)
 4) Implement design
 
@@ -425,12 +467,12 @@ CURRENT MONTH:
 #  history:         summary of "money flow" for each month/year                                                        #
 #  extra_expense:     big expenses (irregular) or extra loss of money for month/year                                   #
 #                                                         history                                                      #
-#        +-----------------------------------------------------------------------------------------------------+       #
-#        | year | month | income_group | outcome_group | invest_amount | capital | balance | usd_ratio | notes |       #
-#        |      |       |    <--9-->   |   <--19-->    |               |         |         |           |       |       #
-#        |------+-------+--------------+---------------+---------------+---------+---------+-----------+-------|       #
-#        |      |       |  |  |  |  |  |  |  |   |  |  |               |         |         |           |       |       #
-#        |      |       |  |  |  |  |  |  |  |   |  |  |               |         |         |           |       |       #
+#        +-------------------------------------------------------------------------------------------------------+     #
+#        | year | month | income_group | outcome_group | invest_amount | capital | carry-out | usd_ratio | notes |     #
+#        |      |       |    <--9-->   |   <--19-->    |               |         |           |           |       |     #
+#        |------+-------+--------------+---------------+---------------+---------+-----------+-----------+-------|     #
+#        |      |       |  |  |  |  |  |  |  |   |  |  |               |         |           |           |       |     #
+#        |      |       |  |  |  |  |  |  |  |   |  |  |               |         |           |           |       |     #
 # columns "income", "outcome" with prefixes "in_", "out_"                                                              #
 #                                                                                                                      #
 #                                                     extra_expense                                                    #
@@ -445,17 +487,18 @@ CURRENT MONTH:
 #                                                      -------------                                                   #
 #                                                     |CURRENT MONTH|                                                  #
 #                                                      -------------                                                   #
-#  income_and_status:    data common for month: income, balance, invest amount                                         #
+#  income_and_status:    data common for month: income, carry-out, invest amount                                       #
 #  outcome:               expences for month per day and groupe                                                        #
 #                                      income_and_status                                    outcome                    #
-#        +--------------------------------------------------------------------+      +----------------------+          #
-#        | date | income_group | invest_amount | balance | usd_ratio | notes  |      | date | outcome_group |          #
-#        |      |    <--9-->   |               |         |           |        |      |      |   <--19-->    |          #
-#        |------+--------------+---------------+---------+-----------+--------|      |------+---------------|          #
-#        |      |  |  |  |  |  |               |         |           |        |      |      |  |  |   |  |  |          #
-#        +-----------------------------------------------------------+--------+      |      |  |  |   |  |  |          #
+#        +----------------------------------------------------------------------+      +----------------------+        #
+#        | date | income_group | invest_amount | carry-out | usd_ratio | notes  |      | date | outcome_group |        #
+#        |      |    <--9-->   |               |           |           |        |      |      |   <--19-->    |        #
+#        |------+--------------+---------------+-----------+-----------+--------|      |------+---------------|        #
+#        |      |  |  |  |  |  |               |           |           |        |      |      |  |  |   |  |  |        #
+#        +-------------------------------------------------------------+--------+      |      |  |  |   |  |  |        #
 #                                                                                                                      #
-#    Field "balance" - current state of money (should be equal = prev.month balance-current month (outcome+inv.mount)) #
+#    Field "carry-out" - what is left from prev. month                                                                 #
+#    Balance - current state of money (should be equal = prev.month carry-out+current month income-outcome-inv.mount)) #
 #    negative balance = debt                                                                                           #
 #    Поле date из "income_and_status" используется как дата последнего заполнения + определение текущего месяца (?)    #
 #    Расходы за месяц расчитываются как сумма всех полей по дням                                                       #

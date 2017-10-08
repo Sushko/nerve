@@ -6,11 +6,24 @@
 Simple design
 
 
-- add capital field in income and status
-- fix issue in script which fill history from income_and status (and main script)
-- fill cappital field in income_and_status temp file
-- regenerate history table
-
+#7 fields
+carry-out   - 1 value       : $db_data['income_and_status']['carry-out']
+income      - table
+    name[]                  : $db_data['income_group'][]
+    value[]                 : $db_data['income_and_status'][]
+    planned income          : ($db_data['goals_in_time']['inc_Lex'] + $db_data['goals_in_time']['inc_Youleek'] +
+                               $db_data['goals_in_time']['inc_add1'] + $db_data['goals_in_time']['inc_add2']) * 0.9
+investment  - 2 values
+    planned value           : $db_data['goals_in_time']['invest_amount'] 
+    value                   : $db_data['income_and_status']['invest_amount']
+outcome     - table
+    name[]                  : $db_data['outcome_group'][]
+    planned value[]         : $db_data['outcome_planned'][]
+    value[]                 : $db_data['outcome'][]
+capital     - 1 value       : $db_data['income_and_status']['capital'] 
+extra       - table
+    - name[]                : $db_data['extra_expense'][]
+    - value[]               : $db_data['extra_expense'][]
 [CURRENT MONTH]
 # tables
 -- income_and_status -all

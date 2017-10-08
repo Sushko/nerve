@@ -9,6 +9,18 @@ function _dbg($value)
     print_r($value);
     echo "</pre>";
 }
+function OS_type()
+{
+    //DB_fill_history();
+    /*
+    if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+        echo 'This is a server using Windows!';
+    } else {
+        echo 'This is a server not using Windows!';
+    }
+    */
+    return PHP_OS;
+}
 
 /* dump nerve DB */
 function DB_dump()
@@ -18,8 +30,14 @@ function DB_dump()
         2. add mysqldump path to $PATH variablein
         3. put mysqldump to folder with "visible" path  /usr/local/sbin,/usr/local/bin,/usr/sbin,/usr/bin,/sbin,/bin
     */
-    //exec('mysqldump -uroot --password= nerve >'.$GLOBALS["store_path"].date('Y-m-d') . '.sql', $output, $return_var);
-    exec('/opt/lampp/bin/mysqldump -uroot --password= nerve > '.$GLOBALS["store_path"].date('Y-m-d') . '.sql', $output, $return_var);
+    if (OS_type() == 'WINNT')
+    {
+        exec('mysqldump -uroot --password= nerve > '.$GLOBALS["store_path"].date('Y-m-d') . '.sql', $output, $return_var);
+    }
+    else
+    {
+        exec('/opt/lampp/bin/mysqldump -uroot --password= nerve > '.$GLOBALS["store_path"].date('Y-m-d') . '.sql', $output, $return_var);
+    }
 }
 
 /* empty tables outcome and income_and_status for new month */
@@ -145,18 +163,6 @@ function DB_fill_history()
         return true;
     }
 }
-function OS_type()
-{
-    //DB_fill_history();
-    /*
-    if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
-        echo 'This is a server using Windows!';
-    } else {
-        echo 'This is a server not using Windows!';
-    }
-    */
-    return PHP_OS;
-}
 /* test data functions */
 function DB_test_data()
 {
@@ -272,6 +278,6 @@ function get_tabel_data($table, $field, $key1 = null, $value1 = null, $key2 = nu
 // get_tabel_data('history', 'lex_salary_globallogic', 'year', '2017');
 // get_tabel_data('history', 'lex_salary_globallogic', 'month', 4);
 // get_tabel_data('history', 'lex_salary_globallogic', 'month', 4, 'year', '2017');
-//DB_empty_curMonth_tables();
-DB_dump();
-//fill_history_1st();
+// DB_empty_curMonth_tables();
+// DB_dump();
+// fill_history_1st();

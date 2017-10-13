@@ -1,9 +1,13 @@
 #########################################
 <Nerve> = "Электронная нервная система" #
 #########################################
+<(Day planner + reminder + making notes) as app for Android, Iphone>
+
 ! usd convertation rate on common part of the sheet
 ! "History and statistics" sheet
 Simple design
+
+
 
 
 #7 fields

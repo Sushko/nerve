@@ -77,6 +77,7 @@ function sum_month($month)
     if($month->num_rows) {
         while($row2 = $month->fetch_row()) {
             foreach($row2 as $key=>$value) {
+     /*is it correct? maybe $val == 0*/
                 if ($key == 0 ) continue;
                 $results[$key] += $value;
             }
@@ -261,6 +262,8 @@ function fill_history_1st()
 function get_tabel_data($table, $field, $key1 = null, $value1 = null, $key2 = null, $value2 = null)
 {
     global $connection;
+    $results = $connection->query("SET NAMES utf8");
+    if (!$results) { print ("error=".$connection->get_error()."<br>"); return false; }
     if ($field == 'all') $field ='*';
     if (!$key1)         $sql = "SELECT $field FROM $table";
     else if (!$key2)    $sql = "SELECT $field FROM $table WHERE $key1=$value1";
@@ -279,5 +282,5 @@ function get_tabel_data($table, $field, $key1 = null, $value1 = null, $key2 = nu
 // get_tabel_data('history', 'lex_salary_globallogic', 'month', 4);
 // get_tabel_data('history', 'lex_salary_globallogic', 'month', 4, 'year', '2017');
 // DB_empty_curMonth_tables();
-// DB_dump();
+ DB_dump();
 // fill_history_1st();

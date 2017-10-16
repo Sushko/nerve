@@ -282,5 +282,5 @@ function get_tabel_data($table, $field, $key1 = null, $value1 = null, $key2 = nu
 // get_tabel_data('history', 'lex_salary_globallogic', 'month', 4);
 // get_tabel_data('history', 'lex_salary_globallogic', 'month', 4, 'year', '2017');
 // DB_empty_curMonth_tables();
- DB_dump();
+// DB_dump();
 // fill_history_1st();

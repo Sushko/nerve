@@ -12,7 +12,6 @@ class Controller_Current_month extends Controller
 	function action_index()
 	{
 		include "data.php";
-
 		// protect from saving empty values in all table by pressing save button
 		// implement save as incremental - only values that changed (maybe passing from view)
 		if(isset($_POST['save']) && isset($_POST['data']))	

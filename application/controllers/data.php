@@ -92,19 +92,20 @@ function data_for_plans_view($db_data)
 
 	$data = array();
 	$tmp = array();
+	$plans_group = array();
 	$plans_name = array();
+	$plans_month = array();
 	$data['OS'] = $db_data['OS'];
 	$data['plans'] = array();
-	$plans_month = array();
-	$plans_group = array();
+	$data['plans']['month'] = array();
+	$data['plans']['names'] = array();
 
 	foreach($db_data['plans_in_time']as $row)
 	{
 		array_push($plans_month, $row['month']);
 	}
-	$plans_month = array_unique($plans_month, SORT_STRING);
-	sort($plans_month, SORT_STRING);
-
+	$data['plans']['month'] = array_unique($plans_month, SORT_STRING);
+//	sort($data['plans']['month'], SORT_STRING);
 	array_push($plans_group, 0);
 	foreach($db_data['outcome_group']as $row)
 	{
@@ -116,47 +117,58 @@ function data_for_plans_view($db_data)
 	{
 		array_push($plans_name, array($row['title'], $plans_group[$row['out_group_id']], $row['cost']));
 	}
-//print_r($plans_name);
 	foreach($plans_name as $key=>$val)
 	{
 		foreach($db_data['plans_in_time'] as $row)
 		{	
-			if ($key == $row['plan_id']) array_push($plans_name[$key], $row['month']);//print($row['month'].'<br>');
-			//print('key = ');print_r($key);print('<br>');
-			//print('row = ');print_r($row['plan_id']);print('<br>');
+			if ($key == $row['plan_id']) array_push($plans_name[$key], $row['month']);
 		}
-//	$tmp[$row['plan_id']][$row['month']] = $plans_name[$row['plan_id']];
-//$data['plans'][$row['month']]
+	}
+	$data['plans']['names'] = $plans_name;
 
+	return $data;
+}
 
+function data_for_goals_view($db_data)
+{
+	$data = array();
+	$data['OS'] = $db_data['OS'];
+	$data['goals'] = array();
+	$capital = $db_data['capital']->fetch_array();
+	$capital = $capital[0];
 
-//print_r($tmp);print('<br>');
-		// print_r($row['month']);print('<br>');
-		// print_r($db_data['outcome_group'][$tmp['out_group_id']]['title']);print('<br>');
-
-		//array_push($data['plans'][$row['month']][$db_data['outcome_group'][$tmp['out_group_id']]['title']], $tmp);
-	}	
-	print_r($plans_name);print('<br>');
-
-	// foreach($db_data['outcome_group'] as $row)
-	// {
-	// 	foreach($data['plans']['month'] as $key=>$value)
-	// 	{
-	// 		//print_r($key);
-	// 		$data['plans'][$value][$row['title']] = Array();
-	// 		foreach($db_data['plans_in_time'] as $key2=>$value2)
-	// 		{
-	// 			print_r($key2);print('  ');print_r($value2);print('<br>');
-	// 				$data['plans'][$value2['month']][$row['title']] = Array();
-	// 		}
-	// 	}
-	// }
-
-	// foreach($db_data['outcome_group'] as $row)
-	// {
-	// 	//$row: group_id, title, column_name
-	// 	print_r($row);
-	// }
+	foreach($db_data['goals_in_time'] as $row)
+	{
+		$capital = $capital + $row['invest_amount'];
+		$data['goals']['year'][] = $row['year'];
+		$data['goals']['month'][] = $row['month'];
+	    $data['goals']['inc_lex'][] = $row['inc_Lex'];
+		$data['goals']['inc_youleek'][] = $row['inc_Youleek'];
+		$data['goals']['inc_add1'][] = $row['inc_add1'];
+		$data['goals']['inc_add2'][] = $row['inc_add2'];
+		$data['goals']['inc_total'][] = $row['inc_Lex']+$row['inc_Youleek']+$row['inc_add1']+$row['inc_add2'];
+		$data['goals']['out_main'][] = $row['out_base'];
+		$data['goals']['out_extra'][] = $row['out_extra'];
+		$data['goals']['out_vacation'][] = $row['out_vacation'];
+		$data['goals']['out_total'][] = $row['out_base']+$row['out_extra']+$row['out_vacation'];
+		$data['goals']['invest'][] = $row['invest_amount'];
+		$data['goals']['capital'][] = $capital;
+		$data['goals']['g_cost'][] = '';
+		$data['goals']['g_name'][] = '';
+	}
+	foreach($db_data['goals_name'] as $row)
+	{
+		for ($i=0;$i<count($data['goals']['year']);$i++)
+		{
+			if ($data['goals']['year'][$i] == $row['year'])
+			{
+				if ($data['goals']['g_cost'][$i] != '') continue;
+				$data['goals']['g_cost'][$i] = $row['cost'];
+				$data['goals']['g_name'][$i] = $row['title'];
+				break;
+			}			
+		}
+	}
 
 	return $data;
 }

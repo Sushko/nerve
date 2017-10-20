@@ -7,7 +7,54 @@
 ! "History and statistics" sheet
 Simple design
 
+Plans and Current month -
+Separate interface for changing goals and reducting history
+
 Планирование - может сделать унифицированные суммы (-паттерны) по разделам (500, 1000, 2000, 5000) и просто добавлять коментарии
+
+
+ОСББ                            450
+Гараж                           600
+Интернет                        150
+Свет                            200
+Газ                             800
+Вода                            300
+Питание                         500     1000    2000
+Хоз.товары и бытовые траты      500     1000    2000
+Бензин/дорога                   500     1000    2000
+Расходы на машину               1000    2000    5000
+Одежда                          500     1000    2000
+Здоровье                        500     1000    2000
+Вещи для дома/быта              500     1000    2000
+Досуг                           500     1000    2000
+Обучение, развитие              500     1000    8500
+
+
+Issue:
+- name 
+- cost
+(- group)
+
+Relate to:
+- group - fixed
+- month - variable
+
+table 1 (groub patter)
+group name
+value pattern
+
+                Gas/800     Food/1000   Car/1000    Clothes/2000    Education/8500
+Masha school                                                            october
+Masha school                                                            december
+Masha school                                                            november
+Masha school
+Group 
+
+name/month      Group       january     february    march   april   may
+school          Education   8500        8500        8500    8500    8500
+cources         Education   2000                    5000
+Clothes         Clothes     500         3000
+gas             services    800         1000
 
 
 #7 fields

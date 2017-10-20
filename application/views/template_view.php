@@ -60,10 +60,10 @@ Modified by VitalySwipe
 				</div>
 				<div id="menu">
 					<ul>
-						<li class="first active"><a href="/<?php echo $GLOBALS["home_path"]; ?>">Главная</a></li>
-						<li><a href="/<?php echo $GLOBALS["home_path"]; ?>history">Услуги</a></li>
-						<li><a href="/<?php echo $GLOBALS["home_path"]; ?>plans">Портфолио</a></li>
-						<li class="last"><a href="/<?php echo $GLOBALS["home_path"]; ?>goals">Контакты</a></li>
+						<li class="first active"><a href="/<?php echo $GLOBALS["home_path"]; ?>">Current month</a></li>
+						<li><a href="/<?php echo $GLOBALS["home_path"]; ?>history">History</a></li>
+						<li><a href="/<?php echo $GLOBALS["home_path"]; ?>plans">Plans</a></li>
+						<li class="last"><a href="/<?php echo $GLOBALS["home_path"]; ?>goals">Goals</a></li>
 					</ul>
 					<br class="clearfix" />
 				</div>
@@ -95,10 +95,10 @@ Modified by VitalySwipe
 					<div class="side-box">
 						<h3>Основное меню</h3>
 						<ul class="list">
-							<li class="first "><a href="/<?php echo $GLOBALS["home_path"]; ?>">Главная</a></li>
-							<li><a href="/<?php echo $GLOBALS["home_path"]; ?>history">Услуги</a></li>
-							<li><a href="/<?php echo $GLOBALS["home_path"]; ?>plans">Портфолио</a></li>
-							<li class="last"><a href="/<?php echo $GLOBALS["home_path"]; ?>goals">Контакты</a></li>
+							<li class="first "><a href="/<?php echo $GLOBALS["home_path"]; ?>">Current month</a></li>
+							<li><a href="/<?php echo $GLOBALS["home_path"]; ?>history">History</a></li>
+							<li><a href="/<?php echo $GLOBALS["home_path"]; ?>plans">Plans</a></li>
+							<li class="last"><a href="/<?php echo $GLOBALS["home_path"]; ?>goals">Goals</a></li>
 						</ul>
 					</div>
 				</div>

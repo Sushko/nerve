@@ -1,4 +1,4 @@
-<h1>Портфолио</h1>
+$<h1>Портфолио</h1>
 <p>
 <form action="" method="post">
 <table class="login">
@@ -10,15 +10,46 @@
 </table>
 </form>
 <table>
-Все проекты в следующей таблице являются вымышленными, поэтому даже не пытайтесь перейти по приведенным ссылкам.
-<tr><td>Год</td><td>Проект</td><td>Описание</td></tr>
 <?php
+// iterate "name"
+// (
+// 	print name, group
+// 	iterate "month"
+// 	(
+// 		iterate "name_details" [3] to [end]
+// 		if (name_details.month = month) var =  cost;
+// 	)
+// 	if (!= '') print name, group, var by month
 
-	// foreach($data as $row)
-	// {
-	// 	echo '<tr><td>'.$row['Year'].'</td><td>'.$row['Site'].'</td><td>'.$row['Description'].'</td></tr>';
-	// }
-	
+// )
+	print('<tr><td></td><td></td>');
+	foreach($data['plans']['month'] as $month)
+	{
+		print('<td>'.$month.'</td>');
+	}
+	print('<tr>');
+	foreach($data['plans']['names'] as $names)
+	{
+	sort($data['plans']['names'][1], SORT_STRING);
+		if (!is_array($names)) continue;
+		$var = '';
+		$empty = 1;
+		foreach($data['plans']['month'] as $month)
+		{	
+			$cost[$month] = 0;
+			for ($i=3;$i<count($names);$i++)
+			{
+				if ($names[$i] == $month) 
+				{
+					$cost[$month] += $names[2];
+				}
+				//echo '<tr><td>'.$row['Year'].'</td><td>'.$row['Site'].'</td><td>'.$row['Description'].'</td></tr>';
+			}
+			if ($cost[$month] != 0) $empty = 0;
+			$var = $var.'<td>'.($cost[$month]/100).'</td>';
+		}
+		if (!$empty) print('<tr><td>'.$names[1].'</td><td>'.$names[0].'</td>'.$var.'</tr>');
+	}
 ?>
 </table>
 </p>

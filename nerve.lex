@@ -7,6 +7,24 @@
 ! "History and statistics" sheet
 Simple design
 
+Plans:
+Edit mode ->
+    Edit plan(name, cost, by month) - edit row plans_name and rows add/delete rows in plans_in_time by month 
+    Add plan (name, cost, by month) -> add row into plans_name and rows into plans_by_time by month
+    Delete plan  -> delete row from plans_name, delete all rows where plan_id = deleted plan_id from plans_in_time
+
+Current_month:
+Editable fields in basic mode ->
+    usd_rate
+    income
+    invest_ammount
+    outcome
+"add extra expence button"
+    add row in extra_expense
+"load from history mode"
+
+
+
 Plans and Current month -
 Separate interface for changing goals and reducting history
 

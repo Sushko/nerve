@@ -10,9 +10,9 @@ class Model_Plans extends Model
 
 		return array(
 				'OS' => OS_type(),
-				'plans_in_time' => get_tabel_data('plans_in_time', 'all'),
-				'plans_name' => get_tabel_data('plans_name', 'all'),
-				'outcome_group' => get_tabel_data('outcome_group', 'all'),
+				'plans_in_time' => get_table_data('plans_in_time', 'all'),
+				'plans_name' => get_table_data('plans_name', 'all'),
+				'outcome_group' => get_table_data('outcome_group', 'all'),
 		);
 	}
 

@@ -9,6 +9,7 @@ function _dbg($value)
     print_r($value);
     echo "</pre>";
 }
+
 function OS_type()
 {
     //DB_fill_history();
@@ -175,10 +176,11 @@ function DB_test_data()
     DB_empty_curMonth_tables();
 
 }
+
 /* fill history table for the first time */
 function fill_history_1st()
 {
-     global $connection;
+    global $connection;
 
     // 1. fetch all data from income_and_status
     $sql = "SELECT * FROM `income_and_status`";
@@ -258,8 +260,9 @@ function fill_history_1st()
         }
     }
 }
+
 /* fetch data from table */
-function get_tabel_data($table, $field, $key1 = null, $value1 = null, $key2 = null, $value2 = null)
+function get_table_data($table, $field, $key1 = null, $value1 = null, $key2 = null, $value2 = null)
 {
     global $connection;
     $results = $connection->query("SET NAMES utf8");
@@ -275,6 +278,62 @@ function get_tabel_data($table, $field, $key1 = null, $value1 = null, $key2 = nu
         return false;
     }
     //_dbg($results);
+    return $results;
+}
+/* update data in table */
+function set_table_data($table, $fields, $condition = NULL)
+{
+    global $connection;
+    $results = $connection->query("SET NAMES utf8");
+
+    if (!$results) { print ("error=".$connection->get_error()."<br>"); return false; }
+    if (!$condition)    $sql = "UPDATE $table SET $fields";
+    else                $sql = "UPDATE $table SET $fields WHERE $condition";
+    _dbg($sql);
+    //$results = $connection->query($sql);
+    if (!$results) {
+        print ("error=".$connection->get_error()."<br>");
+        return false;
+    }
+    //_dbg($results);
+    return $results;
+}
+//  $query = "UPDATE `PayPort` SET `Trader` = '', `TraderUA` = '', `Logo` = '', `Message` = '', `link` = '', `ID provider` = '', `Text` = '' WHERE `ID trader` = ".$id;
+
+/* add data in table */
+function add_table_data($table, $fields)
+{
+    global $connection;
+    $results = $connection->query("SET NAMES utf8");
+
+    if (!$results) { print ("error=".$connection->get_error()."<br>"); return false; }
+    $sql = "INSERT INTO $table VALUES $fields";
+    _dbg($sql);
+    //$results = $connection->query($sql);
+    if (!$results) {
+        print ("error=".$connection->get_error()."<br>");
+        return false;
+    }
+    //_dbg($results);
+    return $results;
+}
+//  $query = "UPDATE `PayPort` SET `Trader` = '', `TraderUA` = '', `Logo` = '', `Message` = '', `link` = '', `ID provider` = '', `Text` = '' WHERE `ID trader` = ".$id;
+
+/* add data in table */
+function search_table($table, $key)
+{
+    global $connection;
+    $results = $connection->query("SET NAMES utf8");
+
+    if (!$results) { print ("error=".$connection->get_error()."<br>"); return false; }
+    $sql = "SELECT * FROM $table WHERE $key";
+    //_dbg($sql);
+    $results = $connection->query($sql);
+    if (!$results) {
+        print ("error=".$connection->get_error()."<br>");
+        return false;
+    }
+    //_dbg($results->fetch_row());
     return $results;
 }
 // get_tabel_data('history', 'lex_salary_globallogic');

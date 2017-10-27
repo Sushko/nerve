@@ -1,11 +1,12 @@
 <h1>Добро пожаловать <a href="/<?php echo $GLOBALS["home_path"]; ?>"><?php echo $data['OS']?></a>!</h1>
 <p>
 <img src="/<?php echo $GLOBALS["home_path"]; ?>img/office-small.jpg" align="left" >
+<form action="" method="post">
 <table>
 <?php
-		echo '<tr><td>USD,$</td><td>'.$data['usd_rate'].'</td></tr>';
-		echo '<tr><td>Capital</td><td>'.$data['capital'].'</td></tr>';
-		if ($data['notes'] != '') echo '<tr><td colspan = "2" align="center" >'.$data['notes'].'</td></tr>';
+		echo '<tr><td>USD,$</td><td><input value="'.$data['usd_rate'].'" /></td></tr>';
+		echo '<tr><td>Capital</td><td><input value="'.$data['capital'].'" /></td></tr>';
+		if ($data['notes'] != '') echo '<tr><td colspan = "2" align="center" ><input value="'.$data['notes'].'" /></td></tr>';
 ?>
 </table>
 <table>
@@ -23,15 +24,15 @@ $summ = 0;
 <table>
 <?php
 	$summ = 0;
-    echo '<tr><td>Остаток с пред. месяца</td><td>'.($data['carry-out']/100).'</td><td></td></tr>';
+    echo '<tr><td>Остаток с пред. месяца</td><td><input value="'.($data['carry-out']/100).'" /></td><td></td></tr>';
 	foreach($data['income'] as $key => $val)
 	{
 		if ($val == 0) continue;
-		echo '<tr><td>'.$key.'</td><td>'.($val/100).'</td><td></td></tr>';
+		echo '<tr><td>'.$key.'</td><td><input value="'.($val/100).'" /></td><td></td></tr>';
 		$summ += $val;
 	}
     echo '<tr><td>Income</td><td>'.($data['planned']['income']*$data['usd_rate']).'</td><td>'.($summ/100).'</td></tr>';
-    echo '<tr><td>Investment</td><td>'.($data['planned']['invest_amount']*$data['usd_rate']).'</td><td>'.($data['invest_amount']/100).'</td></tr>';
+    echo '<tr><td>Investment</td><td>'.($data['planned']['invest_amount']*$data['usd_rate']).'</td><td><input value="'.($data['invest_amount']/100).'" /></td></tr>';
 
 ?>
 </table>
@@ -64,7 +65,7 @@ $summ = 0;
 		echo '<td>'.($summ_group/100).'</td>';
 		foreach($data['outcome'][$key] as $key2 => $val2)
 		{
-			echo '<td>'.($val2/100).'</td>';
+			echo '<td><input value="'.($val2/100).'" /></td>';
 			if (empty($summ_day[$key2])) $summ_day[$key2] = 0;
 			$summ_day[$key2] += $val2;
 		}
@@ -77,13 +78,12 @@ $summ = 0;
 		
 ?>
 </table>
-</p>
-<form action="" method="post">
 <table class="login">
 	<tr>
 		<td><input type="submit" value="Send" name="btn" style="width: 60px; height: 25px;"></td>
-		<td><input type="text" name="data"></td>
+		<td><input type="text" name="data" value="<?php echo 3; ?>"></td>
 		<td><input type="hidden" name="save"></td>
 	</tr>
 </table>
 </form>
+</p>

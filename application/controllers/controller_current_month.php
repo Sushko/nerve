@@ -14,6 +14,7 @@ class Controller_Current_month extends Controller
 		include "data.php";
 		// protect from saving empty values in all table by pressing save button
 		// implement save as incremental - only values that changed (maybe passing from view)
+	// !! maybe make $this->model->set_data() call using javaScript, not by POST - to avoid reloading page and data gathering in php !!
 		if(isset($_POST['save']) && isset($_POST['data']))	
 		{
 			$this->model->set_data($_POST['data']);

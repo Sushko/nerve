@@ -10,9 +10,9 @@ class Model_Goals extends Model
 
 		return array(
 				'OS' => OS_type(),
-				'goals_in_time' => get_tabel_data('goals_in_time', 'all'),
-				'goals_name' => get_tabel_data('goals_name', 'all'),
-				'capital' => get_tabel_data('income_and_status', 'capital'),
+				'goals_in_time' => get_table_data('goals_in_time', 'all'),
+				'goals_name' => get_table_data('goals_name', 'all'),
+				'capital' => get_table_data('income_and_status', 'capital'),
 		);
 	}
 

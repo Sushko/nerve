@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+	<!-- Include bootstrap -->
+	<link rel="stylesheet" href="css/bootstrap.min.css"/>
+
+  <!-- Include Font Awesome -->
+  <link rel="stylesheet" href="css/font-awesome.css"/>
+
+  <!-- Include JQuery -->
+  <script src="js/jquery-3.2.1.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script> -->
+  <!-- Include bootstrap JavaScript -->
+  <script src="js/bootstrap-3.3.7.min.js"></script>
+  <script type="text/javascript">
+
+  $(document).ready(function(){
+
+        $("li.page-scroll").click(function() {
+          $("li.page-scroll").removeClass("focusPage");
+          $(this).addClass("focusPage");
+        });
+
+        $("a[href^='#']:not([href='#']").on("click", function(e){
+          var anchor = $(this.hash);
+          $('html, body').stop().animate({
+            scrollTop: $(anchor).offset().top
+          }, 777);
+          e.preventDefault();
+          return false;
+        });
+
+  });
+
+  </script>
+  <style>
+    body {
+      position: relative;
+      /*padding-top: 60px;*/
+      /*background-image: url('http://eskipaper.com/images/background-patterns-11.jpg');opacity:0.5;*/
+    }
+    .navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover {
+      font-size: 1.5em;
+      font-weight:bold;
+      background-color: transparent;
+    }
+
+    #portfolio {
+      padding: 50px 0 0 0;
+    }
+
+    #about {
+      padding: 50px 0 0 0;
+    }
+
+    #contact {
+      padding: 50px 0 0 0;
+    }
+
+    .transitionIt  {
+      -webkit-transition: all ease 0.9s;
+      -moz-transition: all ease 0.9s;
+      -o-transition: all ease 0.9s;
+      -ms-transition: all ease 0.9s;
+      transition: all ease 0.9s;
+    }
+    .transitionItFast  {
+      -webkit-transition: all ease 0.3s;
+      -moz-transition: all ease 0.3s;
+      -o-transition: all ease 0.3s;
+      -ms-transition: all ease 0.3s;
+      transition: all ease 0.3s;
+    }
+
+    .focusPage {
+      font-size:1.5em;
+      font-weight:bold;
+    }
+
+    .bodyContent{
+      border-style: solid;
+      border-color: #636c72;
+      border-radius: 2vmin;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+
+    .bg-pale-info{
+      background-color: #f0e6d2;
+    }
+
+    .bg-pale-content{
+      background-color: #ffffff;
+    }
+
+    .profilePic {
+      border-color: #f0e6d2;
+      border-width: 5%;
+      border-style: solid;
+      border-radius: 50%;
+      width: 50%;
+    }
+
+    .portfolioPic {
+      border-radius: 8%;
+    }
+
+    .noselect {
+      -webkit-touch-callout: none; /* iOS Safari */
+        -webkit-user-select: none; /* Safari */
+         -khtml-user-select: none; /* Konqueror HTML */
+           -moz-user-select: none; /* Firefox */
+            -ms-user-select: none; /* Internet Explorer/Edge */
+                user-select: none; /* Non-prefixed version, currently
+                                      supported by Chrome and Opera */
+    }
+
+  </style>
+</head>
+<body class="noselect" data-spy="scroll" data-target="#navbar" >
+  <div class="container-fluid">
+    <!-- navigation bar -->
+    <nav id="navbar" class="nav navbar navbar-inverse navbar-fixed-top transitionIt">
+      <div class="container-fluid">
+        <div class="navbar-header page-scroll">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span> 
+          </button>
+          <a class="navbar-brand" href="#">Software Engineer</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav navbar-right">
+            <!-- <li class="hidden active"><a href="#page-top"></a></li> -->
+            <li class="page-scroll"><a class="transitionItFast" href="#about">About</a></li>
+            <li class="page-scroll"><a class="transitionItFast" href="#portfolio">Portfolio</a></li>
+            <li class="page-scroll"><a class="transitionItFast" href="#contact">Contacts</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+        <!-- About -->
+    <section id="about">
+      <div class="container">
+        <h2 class="text-center"><i class="fa fa-user-o " aria-hidden="true"></i> About me</h2>
+          <br>
+          <div class="bodyContent bg-pale-info">
+            <div class="row">
+              <div class="col-xs-12 col-md-4">
+                <!-- https://s33.postimg.org/wnit8d29b/portfolio.png -->
+                <img draggable="false" src ="img/portfolio.png" alt="My profile image" title="Profile image" class="profilePic center-block">
+              </div>
+              <div class="col-xs-12 col-md-8">
+                <p class="lead">
+                I'm Software Engineer. </p>
+                <p class="lead">A software engineer is a person who applies the principles of software engineering to the design, development, maintenance, testing, and evaluation of the software that make computers or other devices containing software work. </p>
+                <p class="lead">This is not my main expertise, but I've decided to refresh my skills in Web.
+                </p>
+              </div> 
+            </div>
+          </div>
+      </div>
+    </section>
+        <!-- Portfolio -->
+
+    <section id="portfolio">
+      <div class="container">
+        <h2 class="text-center"><i class="fa fa-laptop " aria-hidden="true"></i> My portfolio</h2>
+        <br>
+        <div class="bodyContent bg-pale-content">
+          <div class="row">
+            <div class="col-md-4 col-sm-6 text-center">
+              <a href="https://pay.platimo.ua/" target="_blank">
+                <!-- https://s33.postimg.org/4anbi28v3/platimo_prev.jpg -->
+                <img draggable="false" src="img/platimo_prev.jpg" class="img-responsive portfolioPic" alt="PlatiMo!">
+              </a>
+              <p class="lead">PlatiMo!</p>
+              <p>Internet and Mobile payment service</p>
+            </div>
+            <div class="col-md-4 col-sm-6 text-center">
+              <a href="https://codepen.io/lex8/full/dZYerQ/" target="_blank">
+                <!-- https://s33.postimg.org/mdge99wzz/tribute_prev.jpg -->
+                <img draggable="false" src="img/tribute_prev.jpg" class="img-responsive portfolioPic" alt="Build a Tribute Page: Scrooge McDuck">
+              </a>
+              <p class="lead">Build a Tribute Page</p>
+              <p>Basic Front End Development Project</p>
+            </div>
+            <div class="col-md-4 col-sm-6 text-center">
+              <a href="https://codepen.io/lex8/full/pdEReP/" target="_blank">
+                <!-- https://s33.postimg.org/cg5dg84tr/portfolio_prev.jpg -->
+                <img draggable="false" src="img/portfolio_prev.jpg" class="img-responsive portfolioPic" alt="Build a Personal Portfolio Webpage">
+              </a>
+              <p class="lead">Build a Personal Portfolio Webpage</p>
+              <p>Basic Front End Development Project</p>
+            </div>
+            <div class="col-md-4 col-sm-6 text-center">
+              <a href="https://codepen.io/beugelaar/pen/pyLMqB" target="_blank">
+                <!-- https://s33.postimg.org/7hhv1odvj/coming-soon.jpg -->
+                <img draggable="false" src="img/coming-soon.jpg" class="img-responsive portfolioPic" alt="Stunning progect 4">
+              </a>
+              <p class="lead">Stunning progect 4</p>
+              <p>Coming Soon!</p>
+            </div>
+            <div class="col-md-4 col-sm-6 text-center">
+              <a href="https://codepen.io/beugelaar/pen/RaqEQe" target="_blank">
+                <!-- https://s33.postimg.org/7hhv1odvj/coming-soon.jpg -->
+                <img draggable="false" src="img/coming-soon.jpg" class="img-responsive portfolioPic" alt="Stunning progect 5">
+              </a>
+              <p class="lead">Stunning progect 5</p>
+              <p>Coming Soon!</p>
+            </div>
+            <div class="col-md-4 col-sm-6 text-center">
+              <a href="https://codepen.io/beugelaar/pen/NrrMKN" target="_blank">
+                <!-- https://s33.postimg.org/7hhv1odvj/coming-soon.jpg -->
+                <img draggable="false" src="img/coming-soon.jpg" class="img-responsive portfolioPic" alt="Stunning progect 6">
+              </a>
+              <p class="lead">Stunning progect 6</p>
+              <p>Coming Soon!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+        <!-- Contacts -->
+
+    <section id="contact">
+      <div class="container">
+        <h2 class="text-center"><i class="fa fa-envelope-o " aria-hidden="true"></i> Contact me</h2>
+          <br>
+    <div class="bodyContent bg-pale-content text-center">
+    <p class="lead">Please fell free and do not contact me through the following broken links: </p>
+                <div>
+                  <a href="https://www.github.com/"       target="_blank" class="btn btn-default"><i class="fa fa-github-square fa-3x fa-fw"></i></a>
+                  <a href="https://www.freecodecamp.com/" target="_blank" class="btn btn-default"><i class="fa fa-free-code-camp fa-3x fa-fw"></i></a>
+                  <a href="https://www.linkedin.com/in/"  target="_blank" class="btn btn-default"><i class="fa fa-linkedin fa-3x fa-fw"></i></a>
+                </div>
+    </div>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

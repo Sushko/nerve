@@ -3,7 +3,7 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- Include bootstrap -->
-	<link rel="stylesheet" href="css/bootstrap.min.v3.css"/>
+	<!-- <link rel="stylesheet" href="css/bootstrap.min.v3.css"/> -->
   <!-- Include bootstrap -->
   <link rel="stylesheet" href="css/normalize.css"/>
   <!-- Include Font Awesome -->
@@ -13,7 +13,7 @@
   <script src="js/jquery-3.2.1.min.js"></script>
 
   <!-- Include bootstrap JavaScript -->
-  <script src="js/bootstrap.min.v3.js"></script>
+  <!-- <script src="js/bootstrap.min.v3.js"></script> -->
   <script type="text/javascript">
     $(document).ready(function() {
       var c=document.getElementById("diagram");
@@ -34,6 +34,14 @@
       max-width: 1200px;
       /*background-image: url('http://eskipaper.com/images/background-patterns-11.jpg');opacity:0.5;*/
     }
+/* The navigation bar */
+.navbar {
+    overflow: hidden;
+    background-color: #242424;
+    position: fixed; /* Set the navbar to fixed position */
+    top: 0; /* Position the navbar at the top of the page */
+    width: 100%; /* Full width */
+}
 
     #statistics {
       background-color: #d0f6e2;
@@ -107,28 +115,48 @@
   .bg {
      display: none;
   }
+  /* Grid it */
+  .navbar { display: grid; grid-auto-flow: column; }
+  .navbar { float: center; }
+  /*.container > * { background: #888; }*/
+
+  .weather {
+    text-align: center;
+  }
+
+  .capital {
+    text-align: center;
+
+  }
+
+  .usdRatio {
+    text-align: center;
+
+  }
+
+  .date {
+    text-align: center;
+
+  }
+
   </style>
 </head>
 <!-- noselect -->
 <body class="container-fluid">
     <!-- navigation bar -->
-    <nav id="navbar" class="nav navbar navbar-inverse navbar-fixed-top" style="padding-top: 10px;">
-      <!-- <div class="container" style="padding-top: 10px;"> -->
-        <div class="row">
-          <div class="col-lg-3 col-sm-3 col-xs-3 text-center"><!-- <div id="weather"></div> -->
-            <i class="fa fa-sun-o fa-spin fa-2x fa-inverse"></i>
-          </div>
-          <div class="col-lg-3 col-sm-3 col-xs-3 text-center">
-            <i class="fa fa-money fa-2x fa-inverse"></i>
-          </div>
-          <div class="col-lg-3 col-sm-3 col-xs-3 text-center">
-            <i class="fa fa-usd fa-2x fa-inverse"></i>
-          </div>
-          <div class="col-lg-3 col-sm-3 col-xs-3 text-center">
-            <i class="fa fa-calendar fa-2x fa-inverse"></i>
-          </div>
-        </div>
-      <!-- </div> -->
+    <nav id="navbar" class="navbar" style="padding-top: 10px;padding-bottom: 10px;">
+      <div id="weather" class="weather">
+          <i class="fa fa-sun-o fa-spin fa-2x fa-inverse"></i>
+      </div>
+      <div id="capital" class="capital">
+          <i class="fa fa-money fa-2x fa-inverse"></i>
+      </div>
+      <div id="usdRatio" class="usdRatio">
+          <i class="fa fa-usd fa-2x fa-inverse"></i>
+      </div>
+      <div id="date" class="date">
+          <i class="fa fa-calendar fa-2x fa-inverse"></i>
+      </div>
     </nav>
 
     <div class="container">

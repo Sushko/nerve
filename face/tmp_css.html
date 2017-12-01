@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Hello, world!</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+  </head>
+  <style type="text/css">
+html {
+  box-sizing: border-box;
+}
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.flex__item {
+  background: #009688;
+  padding: 1em;
+  border: 1px solid #fff;
+}
+
+.flex__item:nth-child(-n + 3) {
+  flex-basis: 33.33%;
+}
+
+.flex__item:nth-child(n + 4) {
+  flex-grow: 1;
+}
+
+.grid {
+  display: grid;
+  grid-template-areas: "a b c d d"
+                       "f f g d d";
+}
+
+.grid__item {
+  background: #009688;
+  padding: 1em;
+  border: 1px solid #fff;
+}
+
+.grid__item:nth-child(4) {
+  grid-area: d;
+}
+
+.grid__item:nth-child(5) {
+  grid-area: f;
+}
+  </style>
+  <body>
+<section>
+  <h2>
+    Flexible Box Layout (One-dimensional)
+  </h2>
+  <div id="flex" class="flex">
+    <div class="flex__item">flex item 1</div>
+    <div class="flex__item">flex item 2</div>
+    <div class="flex__item">flex item 3</div>
+    <div class="flex__item">flex item 4</div>
+    <div class="flex__item">flex item 5</div>
+    <div class="flex__item">flex item 6</div>
+    <div class="flex__item">flex item 7</div>
+    <div class="flex__item">flex item 8</div>
+  </div>
+</section>
+
+<section>
+  <h2>
+    CSS Grid Layout (Two-dimensional)
+  </h2>
+  <div id="grid" class="grid">
+    <div class="grid__item">grid item 1</div>
+    <div class="grid__item">grid item 2</div>
+    <div class="grid__item">grid item 3</div>
+    <div class="grid__item">grid item 4</div>
+    <div class="grid__item">grid item 5</div>
+    <div class="grid__item">grid item 6</div>
+  </div>
+</section>
+  </body>
+</html>

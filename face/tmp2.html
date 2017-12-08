@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+
+<style>
+
+    #main { display: grid;
+           grid-template-areas: "h h h"
+                                "a b c"
+                                "f f f";
+           grid-template-columns: auto 1fr 20%; }
+    #header { grid-area: h;   }
+    #article { grid-area: b; min-width: 12em;     }
+    #nav     { grid-area: a; /* auto min-width */ }
+    #aside   { grid-area: c; min-width: 12em;     }
+    #footer { grid-area: f;   }
+
+    div {
+  margin: 0.125em;
+  padding: 0.125em;
+  border-radius: 0.25em;
+  list-style: none;
+  color: black;
+  text-align: center;
+
+        border:solid 1px;
+        border-color: black;
+    }
+
+
+</style>
+ <body>
+
+<div id="main">
+    <div id="header">1</div>
+    <div id="article">2</div>
+    <div id="nav">3</div>
+    <div id="aside">4</div>
+    <div id="footer">5</div>
+</div>
+
+
+ </body> 
+</html>
